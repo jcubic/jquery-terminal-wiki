@@ -134,7 +134,7 @@ $('#terminal').terminal(function(command) {
 * the third options is that some functions have it as last parameter (it should be in all of them), which is legacy to not break the API.
 
 ```javascript
-var term = $('#terminal').terminal(function(command, term) {
+$('#terminal').terminal(function(command, term) {
     term.echo('foo');
 });
 ```
