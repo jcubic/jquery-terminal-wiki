@@ -688,7 +688,7 @@ The best way to add key shortcuts is to use keymap option which accept object wi
 $(function() {
     $('#terminal').terminal({}, {
         keymap: {
-            'CTRL+P: function(e, original) {
+            'CTRL+P': function(e, original) {
                  this.echo('my shortcut');
             }
        }
@@ -703,7 +703,7 @@ $(function() {
     var count = 0;
     $('#terminal').terminal({}, {
         keymap: {
-            'ENTER: function(e, original) {
+            'ENTER': function(e, original) {
                  original();
                  this.set_prompt(this.get_prompt().replace(/[0-9]*> /, ++count + '> '));
             }
