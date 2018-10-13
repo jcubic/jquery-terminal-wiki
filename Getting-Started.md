@@ -5,28 +5,29 @@
 4. [Initialization](#user-content-initialization)
 5. [Accessing Terminal Object](#user-content-accessing-terminal-object)
 6. [Creating interpreter](#user-content-creating-interpreter)
-7. [Greetings](#user-content-greetings)
-8. [Parsing commands](#user-content-parsing-commands)
-9. [Formatting](#user-content-formatting)
-10. [Syntax highlighting](#user-content-syntax-highlighting)
-11. [Less command](#user-content-less-command)
-12. [ANSI Escape codes](#user-content-ansi-escape-codes)
-13. [Custom Syntax highlighting](#user-content-custom-syntax-highlighting)
-14. [Tab completion](#user-content-tab-completion)
-15. [Command line history](#user-content-command-line-history)
-16. [Reverse history search](#user-content-reverse-history-search)
-17. [Chinese and Japanese character support](#user-content-chinese-and-japanese-character-support)
-18. [Prompt](#user-content-prompt)
-19. [Reading text from user](#user-content-reading-text-from-user)
-20. [Masking password](#user-content-masking-password)
-21. [Authentication](#user-content-authentication)
-22. [Key Shortcuts](#user-content-key-shortcuts)
-23. [Events](#user-content-events)
-24. [Asynchronous Commands](#user-content-asynchronous-commands)
-25. [Saving State](#user-content-saving-state)
-26. [Executing commands from JavaScript](#user-content-executing-commands-from-javascript)
-27. [Invoking Commands and terminal methods from Server](#user-content-invoking-commands-and-terminal-methods-from-server)
-28. [Updating lines](#user-content-updating-lines)
+7. [What you can echo?](#user-content-what-you-can-echo)
+8. [Greetings](#user-content-greetings)
+9. [Parsing commands](#user-content-parsing-commands)
+10. [Formatting](#user-content-formatting)
+11. [Syntax highlighting](#user-content-syntax-highlighting)
+12. [Less command](#user-content-less-command)
+13. [ANSI Escape codes](#user-content-ansi-escape-codes)
+14. [Custom Syntax highlighting](#user-content-custom-syntax-highlighting)
+15. [Tab completion](#user-content-tab-completion)
+16. [Command line history](#user-content-command-line-history)
+17. [Reverse history search](#user-content-reverse-history-search)
+18. [Chinese and Japanese character support](#user-content-chinese-and-japanese-character-support)
+19. [Prompt](#user-content-prompt)
+20. [Reading text from user](#user-content-reading-text-from-user)
+21. [Masking password](#user-content-masking-password)
+22. [Authentication](#user-content-authentication)
+23. [Key Shortcuts](#user-content-key-shortcuts)
+24. [Events](#user-content-events)
+25. [Asynchronous Commands](#user-content-asynchronous-commands)
+26. [Saving State](#user-content-saving-state)
+27. [Executing commands from JavaScript](#user-content-executing-commands-from-javascript)
+28. [Invoking Commands and terminal methods from Server](#user-content-invoking-commands-and-terminal-methods-from-server)
+29. [Updating lines](#user-content-updating-lines)
 
 ### Introduction
 
@@ -222,6 +223,16 @@ $(function() {
    ]);
 });
 ```
+
+### What you can echo?
+
+echo method on terminal instance if versatile, you can call echo with following:
+* string
+* array of strings
+* any other value that can have toString method (so also numbers or boolean that are boxed in Number object or any custom object that have toString method).
+* Promise that resolve to any of the above
+
+Limitations you can't call echo with array of other values only array of strings and JavaScript objects are printed as `[object Object]` (Because this what's returned by toString method), but this may change and new printing objects may be introduced in the future.
 
 ### Greetings
 
