@@ -755,6 +755,8 @@ $(function() {
 });
 ```
 
+NOTE: this is just example of ENTER to have this behavior it's better to create prompt as function.
+
 this will change the prompt with counter for each enter.
 
 The order of mnemonics look like this CTRL+META+SHIFT+ALT and at the begining is special modifier HOLD the shortcut will be invoked when you hold the key.
