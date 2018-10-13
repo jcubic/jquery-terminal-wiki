@@ -481,6 +481,8 @@ $.terminal.new_formatter([/hello/g, '[[;red;]hello world]']);
 Note: one more limitations of formatters is that they are executed on strings between formatting so above formatter will not create infinite loop of replacement.
 With exception of formatter like `$.terminal.nested_formatting` which is always added to the list when including the library.
 
+If you want to have formatters based on interpreters, like for instance you want mysql command that have sql syntax and js command to have javascript formatting etc. then you can create a stack of formatters (Stack is the data structure [more on Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). Example how to do that is in [example section on a web site](https://terminal.jcubic.pl/examples.php#syntax_highlight).
+
 ### Tab completion
 
 Tab completion is another useful feature of jQuery Terminal by default if you press tab it will insert it into terminal (it will be replaced by 4 spaces but it will
