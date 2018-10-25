@@ -563,11 +563,9 @@ With special <a href="https://github.com/timoxley/wcwidth">wcwidth</a> library y
 Chinese or Japanese. The package is on npm but it don't include the file proper for browsers (no UMD - Universal Module Definition), you can spam the author
 on this <a href="https://github.com/timoxley/wcwidth/issues/2">issue on github</a>.
 
-temporarily you can get it from rawgit.com, but the service will be shut down in 2019.
+But you can grab it from terminal own CDN provided by [KeyCDN](https://www.keycdn.com/).
 
-https://rawgit.com/jcubic/leash/master/lib/wcwidth.js
-
-If the author don't create UMD module that will allow to use it in browser, I will probably publish some npm package to be able to use it from unpkg.com.
+https://cdn.terminal.jcubic.pl/wcwidth.js
 
 ### Prompt
 
