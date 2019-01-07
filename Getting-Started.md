@@ -565,7 +565,16 @@ on this <a href="https://github.com/timoxley/wcwidth/issues/2">issue on github</
 
 But you can grab it from terminal own CDN provided by [KeyCDN](https://www.keycdn.com/).
 
-https://cdn.terminal.jcubic.pl/wcwidth.js
+```html
+<script src="https://cdn.terminal.jcubic.pl/wcwidth.js"></script>
+```
+
+or from jsdelivr:
+
+```html
+<script src="
+https://cdn.jsdelivr.net/gh/jcubic/leash@devel/lib/wcwidth.js"></script>
+```
 
 ### Prompt
 
