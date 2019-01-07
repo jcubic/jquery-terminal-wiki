@@ -572,8 +572,7 @@ But you can grab it from terminal own CDN provided by [KeyCDN](https://www.keycd
 or from jsdelivr:
 
 ```html
-<script src="
-https://cdn.jsdelivr.net/gh/jcubic/leash@devel/lib/wcwidth.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jcubic/leash@devel/lib/wcwidth.js"></script>
 ```
 
 ### Prompt
