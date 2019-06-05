@@ -36,29 +36,29 @@ In this tutorial, you will learn all the basics needed to create your own Termin
 
 ### Unpkg CDN
 
-The best way to get jQuery Terminal is from [unpkg.com](https://unpkg.com/#/) that serve files from [npm repository](https://npmjs.com). With it you don't need to host the files yourself. It's useful if you want to create quick Proof of Concept or if you want to use
-one of demo services like Codepen, JSFiddle.
-With unpkg.com CDN you can specify that you always want latest version but not if they have breaking changes. For instance if latest version is 1.22.1, you can specify that you want version 1.22 and all the bug fixes using url:
+The best way to get jQuery Terminal is from [unpkg.com](https://unpkg.com/#/) that serves files from [npm repository](https://npmjs.com). With it, you don't need to host the files yourself. It's useful if you want to create a quick proof of concept or if you want to use one of demo services like Codepen, JSFiddle.
+
+With unpkg.com CDN you can specify that you always want the latest version but not if they have breaking changes. For instance if the latest version is 1.22.1, you can specify that you want the version 1.22 and all the bug fixes using url:
 
 ```
 https://unpkg.com/jquery.terminal@1.22.x
 ```
 
-this url will redirect to file /js/jquery.terminal.js with proper version number. If you want to have all the bug fixes to version 1 and all the features you can use 1.x.x instead of 1.22.x. And you if you want minified version of the library you can specify this url:
+This URL will redirect to file /js/jquery.terminal.js with the proper version number. If you want to have all the bug fixes for version 1 and all the features, you can use 1.x.x instead of 1.22.x. And if you want minified version of the library you can specify this URL:
 
 ```
 https://unpkg.com/jquery.terminal@1.x.x/js/jquery.terminal.min.js
 ```
 
-same for css file, you can use url:
+It's the same principle for the css file, you can use an URL like:
 
 ```
 https://unpkg.com/jquery.terminal@1.x.x/css/jquery.terminal.min.css
 ```
 
-### Html page
+### HTML page
 
-Basic html page using unpkg look like this
+A basic HTML page using unpkg.com CDN will look like this
 
 ```html
 <!DOCTYPE html>
@@ -73,7 +73,7 @@ Basic html page using unpkg look like this
 </html>
 ```
 
-Of course you can get the files using download option, install it using npm or bower or even by cloning the git repository.
+Of course, you can use local files instead by downloading them directly, by installing with npm or bower or even by cloning the git repository.
 
 ### Initialization
 
