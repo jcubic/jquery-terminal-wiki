@@ -576,11 +576,17 @@ $('body').terminal(function(command) {
 
 ### Command line history
 
-Each time you press enter, your command is saved in history (you can disable this by using history option). History is saved in localStorage or in cookies. You can move through history commands using up and down arrows. You can filter which commands should go to history and which don't using historyFilter option. It can be regular expression that if match it will not add command to history (you can use regex /^\s/ to not put commands that start with space like in bash) you can also specify a function where you can use some logic and return true or false.
-You can also limit number of commands in history using historySize option, if you set it to falsy value it will not restrict the size (but it may fill up your localStorage or cookies).
+Each time you press `<Enter>`, the command is saved in the history (you can disable this by using the history option). History is saved in **localStorage** or with **cookies**.
 
-If want history to be present only in one session you can use history in memory, instead of localStorage or cookies, using memory option set to true, but this will make
-all data saved in memory (the same will happen with all data require by terminal like authentication token or interpreter names).
+You can move through history commands using the up and down arrows.
+
+You can filter which commands should go to history and which don't using the `historyFilter` option. It can be regular expression that, if match,  will not add the command to history (you can use regex /^\s/ to not store commands that begin with space like in bash). You can also specify a function where you can use some logic and return true or false.
+
+You can also limit the number of commands in history using the `historySize` option; if you set it to `false`, it will not restrict the size (but it may fill up your **localStorage** or the **cookies**).
+
+If you want the history to be persist only during the current session, you can use *in memory* history, instead of localStorage or cookies, by using the memory option set to true.
+
+But this will make all the data actually saved to memory (the same will happen with all data required by terminal like authentication token or interpreter names).
 
 ### Reverse history search
 
