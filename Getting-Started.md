@@ -357,43 +357,44 @@ Another usage example of this function can be found in the [API reference](https
 
 ### Formatting
 
-Formatting is special syntax that can be used to format your text, you can make your text bold italic or underline or even glow with this syntax.
+Formatting the output of the `echo` method use a special syntax that can be used to format your text; you can make your text bold, italic or underlined or even glow.
 
 ```javascript
 term.echo('[[b;red;white]hello world]');
 ```
 
-this will create bold text with red color and white background more about the <a href="api_reference.php#echo">syntax of Terminal formatting in API reference</a>.
+This example will create a red bold text on a white background.
 
-If you need to echo brackets, best way is to use $.terminal.escape_brackets function.
+More about the <a href="api_reference.php#echo">syntax of Terminal formatting in API reference</a>.
+
+If you need to echo brackets, the best way is to use the `$.terminal.escape_brackets` function.
 
 ### Syntax highlighting
 
-If you want to define syntax highlighting for instance taken from Python or SQL, there is option to not have to specify this formatting on your own but use [PrismJS library](https://prismjs.com/). This will also work while you type. To use Prism you first need to include files needed for the library:
+If you want to define *syntax highlighting* for instance taken from *python* or *SQL*, there is the possibility to not have to specify this formatting on your own but use the [PrismJS library](https://prismjs.com/). This will also work while you type. To use *PrismJS*, you first need to include the files needed for the library:
 
 ```
 https://unpkg.com/prismjs/prism.js
 https://unpkg.com/prismjs/themes/prism.css
 ```
 
-by default PrismJS only include html css and JavaScript syntax if you need python or SQL you need to include one of the [component files](https://unpkg.com/prismjs/components/) they are also on npm and on [GitHub](https://github.com/PrismJS/prism).
+by default *PrismJS* only includes the HTML, CSS and JavaScript syntax. If you need others like *python* or *SQL*, you need to include one of the [component files](https://unpkg.com/prismjs/components/); they are also on *npm* and on [GitHub](https://github.com/PrismJS/prism).
 
-After you include PrismJS files you need to include one more thing which is jQuery Terminal Prism wrapper:
+After you have included the *PrismJS* files, you laso need to include the jQuery Terminal Prism wrapper:
 
 ```
 https://unpkg.com/jquery.terminal@1.x.x/js/prism.js
 ```
 
-Then you can call this function somewhere after terminal files and prism. it don't need to be in $(function() {});
+Finally, you can call the `syntax` function somewhere after the terminal and prismJS files have been "imported". It doesn't need to be in `$(function() {});`. To get python highlighting, as an example:
 
 ```javascript
 $.terminal.syntax('python')
 ```
 
-to have python highlighting. There is on additional syntax add by Terminal prism wrapper which is website that highlight html, css and javascript.
-Where css need to be in style tag and JS in script tag.
+There is one additional *syntax highliting* added by the *Terminal prism wrapper* which is for website to highlight HTML, CSS and javascript. This is mainly for CSS and js that is defined in the *style* parameter for CSS and inside `<script>...</script> for javascript.
 
-Syntax highlighters are also useful if you want to have command like cat or less where
+Syntax highlighters are also useful if you want to have command like *cat* or *less* where
 
 ### Less command
 
