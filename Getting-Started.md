@@ -515,10 +515,11 @@ If you want to have formatters based on interpreters, like for instance, a *mysq
 
 ### Tab completion
 
-Tab completion is another useful feature of jQuery Terminal by default if you press tab it will insert it into terminal (it will be replaced by 4 spaces but it will
-be treated as one character). To change default behavior you need to use [completion option](https://terminal.jcubic.pl/api_reference.php#completion).
+Tab completion is another useful feature of jQuery Terminal. By default, if you press `<TAB>`, it will be inserted into the terminal (even though it will be replaced by 4 spaces, it will still be treated as one character).
 
-it you have object as first argument or JSON-RPC string with system.describe
+To change the default behavior, you need to use the [completion option](https://terminal.jcubic.pl/api_reference.php#completion).
+
+It you have an object as first argument (interpreter) or a JSON-RPC string with `system.describe`
 
 ```javascript
 $('#terminal').terminal({
@@ -533,9 +534,9 @@ $('#terminal').terminal({
 });
 ```
 
-if you type op and press TAB it will insert open then if you press TAB twice it will list open and open-foo
+If you type `op` and press `<TAB>`, it will insert `open` then if you press `<TAB>` a second time, it will list `open` and `open-foo`.
 
-Second option is if you have function as first argument, then you can use array:
+The second possibility is if you use a function as first argument (interpreter), then you can use an array:
 
 ```javascript
 $('#terminal').terminal(function(command) {
@@ -545,7 +546,7 @@ $('#terminal').terminal(function(command) {
 });
 ```
 
-and if you need logic in completion for instance if you have command git and want to complete git clone and git checkout you can use this:
+If you need logic in the completion process: say for instance you have the command `git` and want to complete it into `git clone` and `git checkout`, you can use this:
 
 ```javascript
 $('#terminal').terminal(function(command) {
@@ -561,7 +562,7 @@ $('#terminal').terminal(function(command) {
 });
 ```
 
-Additionally you can return a promise from completion, you can use Promise.resolve, but more useful is if you have your completion on the server:
+Additionally, you can return a promise from completion; you can use `Promise.resolve()`, but what is more useful is if you make the completion on the server:
 
 ```javascript
 $('body').terminal(function(command) {
