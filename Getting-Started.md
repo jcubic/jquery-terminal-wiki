@@ -4,8 +4,8 @@
 3. [Html page](#user-content-html-page)
 4. [Initialization](#user-content-initialization)
 5. [Accessing Terminal Object](#user-content-accessing-terminal-object)
-6. [Creating interpreter](#user-content-creating-interpreter)
-7. [What you can echo?](#user-content-what-you-can-echo)
+6. [Creating the interpreter](#user-content-creating-the-interpreter)
+7. [What can you echo?](#user-content-what-can-you-echo)
 8. [Greetings](#user-content-greetings)
 9. [Parsing commands](#user-content-parsing-commands)
 10. [Formatting](#user-content-formatting)
@@ -144,13 +144,13 @@ $('#terminal').terminal(function(command, term) {
 
 This is useful, for example, when you use ES5 and `setTimeout` and want to call `echo` after a delay (with ES6 you can use the *arrow* function).
 
-### Creating interpreter
+### Creating the interpreter
 
-You know now how to invoke the plugin now you need to specify the interpreter (first plugin argument) and options, which are optional, but you probably want at least to remove default greetings, which discussed later in this document.
+You know how to invoke the plugin; you need now to specify the interpreter (the first argument of the plugin) and define some options; you probably want at least to remove default greetings, which is discussed later in this document.
 
 There are 3 types of interpreters: function, object and strings.
 
-* function - is created when you want whole command as is passed to you
+* **function** is created when you pass the interpreter as a function
 
 ```javascript
 $(function() {
@@ -160,7 +160,7 @@ $(function() {
 });
 ```
 
-* object
+* an **object**
 
 ```javascript
 $(function() {
@@ -178,17 +178,21 @@ $(function() {
 });
 ```
 
-this will create terminal with three commands: open, close and sub. If you type `open something` the open function will be invoked and value parameter will equal to something.
+This will create a terminal with three commands: open, close and sub. If you type `open something` the open function will be invoked and value parameter will equal to something.
+
 Terminal will parse all your commands, convert number like strings into numbers and Regular Expressions into RegExp objects. You can disable this behavior using
-[processArguments](https://terminal.jcubic.pl/api_reference.php#processarguments) option. This option can be boolean and you can set it to false or it can be a function where you
-can process the value in your own way (in this function for instance you can use JSON.parse to get objects out of strings). By default if you have object like this and you type `close foo` terminal will throw error because you didn't specify second argument.
-To prevent this behavior you can use option [checkArity](https://terminal.jcubic.pl/api_reference.php#checkarity) set to false.
+[processArguments](https://terminal.jcubic.pl/api_reference.php#processarguments) option. This option can be a *boolean* and you can set it to `false` or it can be a function where you
+can process the value in your own way (in this function for instance you can use JSON.parse to get objects out of strings).
 
-In this example you have sub which don't have a function but another object, when you type `sub` in terminal the prompt will change to `sub> ` and you will be able to type
-get, open and close will not work. This is called nested interpreter, which can also be created when you have function as interpreter using [push method](https://terminal.jcubic.pl/api_reference.php#push).
+By default, if you have an object like this and you type `close foo`, terminal will throw an error because you didn't specify a second argument.
 
-*  third option is string which point to [JSON-RPC service](https://en.wikipedia.org/wiki/JSON-RPC), if service is on the same domain you can use it as is, but if it's on different domain or port then you need
-to use mechanism called [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
+To prevent this behavior you can use the option [checkArity](https://terminal.jcubic.pl/api_reference.php#checkarity) set to `false`.
+
+In this example, you have `sub` which is not a function but another object; when you type `sub` in the terminal the prompt will change to `sub> ` and you will be able to type `get`, but not `open` and `close`. They will not work.
+
+This is called a nested interpreter, which can also be created when you have a function as interpreter and by using the [push method](https://terminal.jcubic.pl/api_reference.php#push).
+
+*  the third option is to use a string which points to a [JSON-RPC service](https://en.wikipedia.org/wiki/JSON-RPC) URL; if the service is on the same domain, you can use it as is, but if it's on different domain or port then you need to use a mechanism called [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
 
 ```javascript
 $(function() {
@@ -196,20 +200,23 @@ $(function() {
 });
 ```
 
-* There is also one more type of interpreter which is array that can combine all the above types but with limitations, you can have only one function that is executed when no other command is found. You can also have single JSON-RPC service without system.describe (or if you turn it off using [describe option](https://terminal.jcubic.pl/api_reference.php#describe)) which was part of the historical 1.1 version of JSON-RPC specification. It's special method that should
-return different object then normal JSON-RPC, the spec for the object is in [system.describe section in API reference page](https://terminal.jcubic.pl/api_reference.php#system.describe). JSON-RPC is converted to simple function while JSON-RPC with system.describe is converted to object.
+* There is also one more type of interpreter which is an array that can combine all the above types but with some limitations:
 
-If you want to have automatic completion for JSON-RPC and only want normal JSON-RPC methods you can specify option [describe](https://terminal.jcubic.pl/api_reference.php#describe) as string with dot separated values that point to property procs from the spec, which should be array of object with name and params. (`describe: "result"` will work if proc array is normal JSON-RPC response).
+You can have only one function that is executed when no other command is found. You can also have one single JSON-RPC service without system.describe (or if you turn it off using [describe option](https://terminal.jcubic.pl/api_reference.php#describe)) which was part of the historical 1.1 version of JSON-RPC specification.
+
+It's a special method that should return different object then normal JSON-RPC, the spec for the object is in [system.describe section in API reference page](https://terminal.jcubic.pl/api_reference.php#system.describe). JSON-RPC is converted to simple function while JSON-RPC with system.describe is converted to object.
+
+If you want to have automatic completion for JSON-RPC and only want normal JSON-RPC methods you can specify option [describe](https://terminal.jcubic.pl/api_reference.php#describe) as a string with dot separated values that point to property procs from the spec, which should be an array of objects with names and params. (`describe: "result"` will work if proc array is normal JSON-RPC response).
 
 Here is how the array should look like:
 
 ```javascript
 [
-   {"name":"echo","params":["string"]}
+   {"name":"echo", "params":["string"]}
 ]
 ```
 
-Here how it looks to invoke terminal with array:
+Here how it looks to invoke the terminal with an array interpreter:
 
 ```javascript
 $(function() {
@@ -226,15 +233,15 @@ $(function() {
 });
 ```
 
-### What you can echo?
+### What can you echo?
 
-echo method on terminal instance if versatile, you can call echo with following:
+The `echo` method of the terminal instance is versatile; you can call `echo` with the following:
 * string
 * array of strings
 * any other value that can have toString method (so also numbers or boolean that are boxed in Number object or any custom object that have toString method).
 * Promise that resolve to any of the above
 
-Limitations you can't call echo with array of other values only array of strings and JavaScript objects are printed as `[object Object]` (Because this what's returned by toString method), but this may change and new printing objects may be introduced in the future.
+A limitation is that you can't call `echo` with an array of other values, only an array of strings. And JavaScript objects are printed as `[object Object]` (because this what's returned by the toString method), but this may change and new printing objects may be introduced in the future.
 
 ### Greetings
 
