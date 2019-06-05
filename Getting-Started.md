@@ -77,8 +77,11 @@ Of course, you can use local files instead by downloading them directly, by inst
 
 ### Initialization
 
-To initialize the plugin and create your terminal you need to invoke the plugin. To do that you need to select some element of the page, use CSS selector with jQuery.
-to Select element with specific ID you can use `$('#terminal')` or if you want to attach terminal to body you can use `$('body')` if you have your script using
+To initialize the plugin and create your terminal, you need to invoke the plugin. To do that, you need to select some element of the page, by using a CSS selector with jQuery.
+
+To select an element with a specific ID you can use `$('#terminal')` or if you want to attach the terminal to `body` you can use `$('body')`.
+
+If you have your script using
 
 ```html
 <script>
@@ -92,7 +95,7 @@ or
 <script src="script.js"></script>
 ```
 
-inside head then you need to wrap your code inside jQuery Ready function that will be invoked when DOM (Document Object Model - html representation in memory) will be
+inside `<head>`, then you need to wrap your code inside jQuery Ready function that will be invoked when DOM (Document Object Model - html representation in memory) will be
 ready so jQuery will find `#terminal` or `body`. to do that you need this code
 
 ```javascript
@@ -101,9 +104,9 @@ $(function() {
 });
 ```
 
-if you have your code after the body (or before closing `</body>`) you don't need to wrap it with `$(function() {});`
+If you have your code after the body (or before closing `</body>`) you don't need to wrap it with `$(function() {});`
 
-when you select your jQuery object you need to invoke terminal plugin:
+When you select your jQuery object, you need to invoke terminal plugin:
 
 ```javascript
 $(function() {
@@ -113,9 +116,9 @@ $(function() {
 
 ### Accessing Terminal Object
 
-Terminal object have useful methods that you can invoke, whole list of methods in API documentation. To access this object, which is jQuery object with more methods, you can use:
+Terminal object have useful methods that you can invoke; the whole list of methods is in the API documentation. To access this object, which is a standard jQuery object with additional methods, you can use:
 
-* value returned by the plugin:
+* the object value returned by the plugin:
 
 ```javascript
 var term = $('#terminal').terminal(function(command) {
@@ -124,14 +127,14 @@ var term = $('#terminal').terminal(function(command) {
 term.echo('foo');
 ```
 
-* you can use this in every function (if you can't you can report a bug).
+* the `this` keyword in every function (if you can't you can report a bug).
 ```javascript
 $('#terminal').terminal(function(command) {
     this.echo('foo');
 });
 ```
 
-* the third options is that some functions have it as last parameter (it should be in all of them), which is legacy to not break the API.
+* the third option is to specify the Terminal object as last parameter of some functions (it should be in all of them). It is a legacy feature to not break the API.
 
 ```javascript
 $('#terminal').terminal(function(command, term) {
@@ -139,7 +142,7 @@ $('#terminal').terminal(function(command, term) {
 });
 ```
 
-this is useful for example when you use ES5 and `setTimeout` and want to call echo after delay (with ES6 you can use arrow function).
+This is useful, for example, when you use ES5 and `setTimeout` and want to call `echo` after a delay (with ES6 you can use the *arrow* function).
 
 ### Creating interpreter
 
