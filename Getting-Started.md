@@ -398,13 +398,13 @@ Syntax highlighters are also useful if you want to have command like *cat* or *l
 
 ### Less command
 
-If you want to have less like command you can use additional file:
+If you want to have *less* like command, you can use an additional file:
 
 ```
 https://unpkg.com/jquery.terminal@1.x.x/js/less.js
 ```
 
-that add new jQuery plugin that can be invoked on Terminal instance which is also jQuery Object.
+This add a new jQuery plugin that can be invoked on Terminal instance, which is also a jQuery Object.
 
 ```javascript
 $('body').terminal({
@@ -414,8 +414,7 @@ $('body').terminal({
 });
 ```
 
-this will invoke less with any syntax highlighting you have, if you don't want to have formatting only for less, then you should not use function
-syntax but use function $.terminal.prism:
+This example shows how to invoke `less` with any syntax highlighting you have. If you don't want to have formatting but only for less, then you should not use the function `syntax` but use the function `$.terminal.prism`:
 
 ```javascript
 $('body').terminal({
@@ -429,44 +428,46 @@ $('body').terminal({
 
 ### ANSI Escape codes
 
-ANSI escape codes is a way to format text in unix terminal. The formatting look like this:
+ANSI escape codes are a way to format text most commonly seen in Unix terminals. The formatting looks like this:
 
 ```
 \x1b[32mHello\x1b[m
 ```
 
-This will display text Hello in gren. 1B is hex for 27 which is escape key.
+This will display the text **Hello** in *green*. `1B` is the hexadecimal for 27 which is the escape key.
 
 Explanation of the [ANSI ESCAPE codes can be found on Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code).
-To use ANSI formatting in jQuery Terminal you only need to include one file:
+
+To use ANSI formatting in jQuery Terminal, you only need to include one file:
 
 ```
 https://unpkg.com/jquery.terminal@1.x.x/js/unix_formatting.js
 ```
 
-The file also hadle what's called overtyping (which is output from man command on Linux) where you have text like this
+The file also handles what's called overtyping (which is used, for example, in the output of the man command on Linux/Unix),  where you have text like this
 ```
 A\x08AB\x08BC\x08C
 ```
 
-which will display text ABC in bold text, which in Terminal will be also white (like in Linux). `\x08` is backspace key so you simple write two times
-the same character to make it bold, if you use `A\x08_` you will get underline. Backspaces (`\x08` characters) should work the same
-as in Linux terminal.
+which will display **ABC** in bold text. `\x08` is the code for the backspace key; so you simply write two times the same character to make it **bold**; if you use `A\x08_` you will get underline instead. Backspace (`\x08` characters) should work the same as in the Linux terminal.
 
 ### Custom Syntax highlighting
 
-You can also create your own formatters (this is how terminal's prism.js work). Low level mechanism for formatters consist of array:
+You can also create your own formatters (this is how terminal's prism.js works). The low level mechanism for formatters consists of arrays:
 
 ```javascript
 $.terminal.defaults.formatters
 ```
 
-which can be array of functions and arrays with regular expression and string. In function you can do any text replacement and return string with terminal formatting.
-To add new formatter you can push value to this array, overwrite it with new array or use helper function `$.terminal.new_formatter` which will inject your formatter,
-before nested formatting formatter that's default formatter, it allows to have nested formatting like in html `[[;red;]foo [[;blue;]bar] baz]`,
-If you us new_formatter function your formatter also can have nesting.
+which can be arrays of functions or arrays with regular expression and strings.
 
-For instance if you want text hello from user to be red and text world to be green you an use this formatter:
+In functions, you can do any text replacement and return strings with the specific Terminal formatting markup.
+
+To add a new formatter, you can push value to this array, overwrite it with a new array or use the helper function `$.terminal.new_formatter`. This function will inject your formatter, before any nested formatting formatter,  that is the default formatter; it allows you to have nested formatting like in HTML `[[;red;]foo [[;blue;]bar] baz]`
+
+If you use the `new_formatter` function, your formatter also can have nesting.
+
+For instance, if you want the text *hello* to be red and the text *world* to be green, you can use this formatter:
 
 ```javascript
 $.terminal.new_formatter(function(string) {
@@ -481,17 +482,18 @@ $.terminal.new_formatter([/hello/g, '[[;red;]hello]']);
 $.terminal.new_formatter([/world/g, '[[;green;]world]']);
 ```
 
-You should use Regular expression with g to replace all instances you if you string or regex without g it will replace only first instance of the string.
+Note: you should use *regular expressions* with `g` to be sure to replace all instances of the string. If your string or regex is without `g`, it will replace only the first instance of the string.
 
-Because formatters are in `$.terminal` namespace they are global for whole page, so you can't have two terminals on the page and each have different formatters (yes you can have multiple terminals on on page).
-This may change in the future but it will be breaking change so it will be in next major version, so if you're using 1.x.x version, from unpkg.com, you will not be affected.
+Because formatters are in the `$.terminal` namespace, they are globals for the whole page, so you can't have two terminals on the page and each one have different formatters (yes you can have multiple terminals on on page).
 
-NOTE: if you need to create formatter that change length of the string like replace foo with hello world then you need to use special function ([$.terminal.tracking_replace](https://terminal.jcubic.pl/api_reference.php#tracking_replace)) that will track
-cursor position after replacement, which was mostly created by [Stack Overflow user T.J. Crowder](https://stackoverflow.com/a/46756077/387194).
-The cursor movement will be little weird because the cursor will be at the beginning of the result string or after while you move virtual cursor on original string.
-So you will be able to remove any character in input string.
+This may change in the future, but it will be a breaking change so it could be in the next major version. If you're using a 1.x.x version, from unpkg.com, you will not be affected.
 
-To have correct cursor position, with above limitations, You need to use function like this:
+NOTE: if you need to create formatter that change the length of the string (like replacing *foo* with *hello world*) then you need to use the special function [$.terminal.tracking_replace](https://terminal.jcubic.pl/api_reference.php#tracking_replace). It will track the cursor position after replacement, which was mostly created by [Stack Overflow user T.J. Crowder](https://stackoverflow.com/a/46756077/387194).
+
+The cursor movement will be a little weird because the cursor will be at the beginning of the resulting string and then at the end of it while you move the virtual cursor on the original string.
+So you will not be able to remove any character in the input string.
+
+To have a correct cursor position, without the above limitations, you need to use the function like this:
 
 ```javascript
 $.terminal.new_formatter(function(string, position) {
@@ -499,18 +501,17 @@ $.terminal.new_formatter(function(string, position) {
 });
 ```
 
-this will be handled for you if you use simple array. But this is the only option if you need to put some kind of logic in replacement.
+This will be handled for you if you use a simple array. But this is the only option if you need to put some kind of logic in the replacement.
 
-This will be the same as above:
+The following code will be roughly the same as above:
 
 ```javascript
 $.terminal.new_formatter([/hello/g, '[[;red;]hello world]']);
 ```
 
-Note: one more limitations of formatters is that they are executed on strings between formatting so above formatter will not create infinite loop of replacement.
-With exception of formatter like `$.terminal.nested_formatting` which is always added to the list when including the library.
+Note: one more limitation of formatters is that they are executed on strings between formatting so above formatter will not create infinite loop of replacement. With the exception of formatter like `$.terminal.nested_formatting` which is always added to the list when including the library.
 
-If you want to have formatters based on interpreters, like for instance you want mysql command that have sql syntax and js command to have javascript formatting etc. then you can create a stack of formatters (Stack is the data structure [more on Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). Example how to do that is in [example section on a web site](https://terminal.jcubic.pl/examples.php#syntax_highlight).
+If you want to have formatters based on interpreters, like for instance, a *mysql* command that have *SQL* syntax and a *js* command to have *javascript* formatting etc... then you can create a stack of formatters (stack is the kind of the data structure [more on Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))). Example how to do that is in [example section on a web site](https://terminal.jcubic.pl/examples.php#syntax_highlight).
 
 ### Tab completion
 
