@@ -31,9 +31,8 @@
 
 ### Introduction
 
-jQuery Terminal is JavaScript library that require, to work properly, other library which is jQuery. To create app using jQuery Terminal, first you need to create
-html page, then include jQuery and both JavaScript and CSS file from jQuery Terminal. You can also use webpack or other bundler but we will not discuss this here.
-I this tutorial you will know all the basics of creating your own Terminal looking webpage as well as explanations of all the features.
+jQuery Terminal is a **JavaScript library** that requires **jQuery** to work properly. To create an app using jQuery Terminal, first you need to create an html page, and then include jQuery and both the JavaScript and CSS files from jQuery Terminal. You can also use **webpack** or other *bundlers* but we will not discuss this here.
+In this tutorial, you will learn all the basics needed to create your own Terminal in a webpage and also the explanations for all the features.
 
 ### Unpkg CDN
 
