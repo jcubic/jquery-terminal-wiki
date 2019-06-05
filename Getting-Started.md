@@ -245,9 +245,10 @@ A limitation is that you can't call `echo` with an array of other values, only a
 
 ### Greetings
 
-Second argument to terminal plugin is object where you put your options. Greetings is one of them, is the first text that is echo into terminal, you also can use
-term.echo to have the same effect but to have the same behavior as with greetings you will
-need to put it in `onInit` event, because greetings is showing after login. More on login and `onInit` in later sections.
+The second argument to the terminal plugin is an object where you can put your options. The "greetings" is one of them. It is the first text that is echoed into terminal.
+
+You also can use `term.echo` to achieve the same effect but to get the same behavior as with greetings, you will
+need to put it in the `onInit` event, because greetings is shown after login. More on `login` and `onInit` in later sections.
 
 ```javascript
 $(function() {
@@ -257,13 +258,12 @@ $(function() {
 });
 ```
 
-
-NOTE: if you want to create ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "" you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes.
+NOTE: if you want to create an ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "", you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes.
 
 ### Parsing commands
 
-To process command with options like in linux command line you can parse it and process it.
-If you're using function as interpreter you can parse the commands to split the command into arguments.
+You can parse and process commands with options like in the *linux* command line or any other shell.
+If you're using a function as interpreter, you can parse the commands to split the command into arguments.
 
 There are two pairs of functions:
 
@@ -275,26 +275,25 @@ and
 * split_command
 * parse_command
 
-x_command will create object from string
+x_command will create an object from a parsed string
 
 ```
 {name, args, rest, command, args_quotes}
 ```
 
-* name - text before first space
-* args - array of arguments
-* rest - text without name and space as is
-* command - the same as input string.
+* name - text before the first space
+* args - the array of arguments parsed with x_arguments
+* rest - the rest of the text without name and space as is
+* command - the input string as is
 * args_quotes - array of strings with quote used ' or "
 
-x_arguments functions will create array from arguments split on space. x_command functions use x_arguments functions to get arguments array.
+x_arguments functions will create an array from the arguments splitted on space. x_command functions use x_arguments functions to process the arguments array.
 
-The processing handle spaces inside regular expressions and strings.
+The processing can handle spaces inside regular expressions and strings.
 
-Another functions added in version 1.17.0 is $.terminal.parse_options parse arguments if accept two arguments string or array and object with options. Right now there is only one option which is boolean which should be array of strings, that indicate that option don't have argument.
+Another function was added in version *1.17.0*: `$.terminal.parse_options`. It parses the arguments and accepts two parameters either a string or an array and an object with options. Right now, there is only one option available which is `boolean`. It should be an array of strings, to indicate options that don't have argument.
 
-parse_options is very simple and works similar to [yargs parser](https://www.npmjs.com/package/yargs-parse). It returns object
-with field `_` that is array of free options and each option is saved as key with value be true or string:
+`parse_options` is very simple and is very similar to [yargs parser](https://www.npmjs.com/package/yargs-parse). It returns an object with a field `_`as an array for the "free" options and each said "free" options is saved as a key with value set to `true`. The other options appear as key with their value as string:
 
 ```javascript
 $.terminal.parse_options(["-x", "foo", "-aby", "bar"], {boolean: ['y']});
@@ -306,7 +305,27 @@ this will return
 {_: ["bar"], x: "foo", y: true, a: true, b: true}
 ```
 
-If you're using object as interpreter you can use ES6 syntax to get option array:
+If you're using an object as interpreter, you can use the following **ES5** syntax to get an `options` array:
+```javascript
+$(function() {
+    $('#terminal').terminal({
+        fetch: function() {
+            var args = Array.from(arguments);
+            var options = $.terminal.parse_options(args);
+            if (!options.url) {
+                this.error("You need to specify the url");
+            }
+            if (options.method == 'POST') {
+                 // do POST request
+            } else {
+                 // do GET request
+            }
+        }
+    }, {checkArity: false});
+});
+
+Or the **ES6** version, if you like:
+```
 
 ```javascript
 $(function() {
@@ -326,15 +345,15 @@ $(function() {
 });
 ```
 
-and if you will get this respons on this commands
+and you will get these responses for  these commands:
 
 ```
-fetch --method "POST" - will show error that url is not specified
+fetch --method "POST" - will show error that the URL is not specified
 fetch --url https://example.com/file.txt --method POST - will fetch the file using POST
 fetch --url https://example.com/file.txt - will fetch the file using GET method
 ```
 
-Another usage example of this function can be found in [API reference](https://terminal.jcubic.pl/api_reference.php#parse_options).
+Another usage example of this function can be found in the [API reference](https://terminal.jcubic.pl/api_reference.php#parse_options).
 
 ### Formatting
 
