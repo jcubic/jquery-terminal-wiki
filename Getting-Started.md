@@ -365,7 +365,7 @@ term.echo('[[b;red;white]hello world]');
 
 This example will create a red bold text on a white background.
 
-More about the <a href="api_reference.php#echo">syntax of Terminal formatting in API reference</a>.
+More about the [syntax of Terminal formatting in API reference](https://terminal.jcubic.pl/api_reference.php#echo).
 
 If you need to echo brackets, the best way is to use the `$.terminal.escape_brackets` function.
 
