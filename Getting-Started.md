@@ -258,6 +258,20 @@ $(function() {
 });
 ```
 
+Greetings option also accept function as argument. It need to be function with one argument which is setGreeting function (so it's a callback function), you can use it like this:
+
+```javascript
+$(function() {
+   $('#terminal').terminal("service.py", {
+      greetings: function(callback) {
+         var text = "Welcome to Python Service";
+         callback(this.cols() > text.length ? text : 'Wellcome');
+   });
+});
+```
+
+You can use callback to call greetings in any time (e.g. as response to server call).
+
 NOTE: if you want to create an ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "", you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes.
 
 ### Parsing commands
