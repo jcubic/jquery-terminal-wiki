@@ -614,16 +614,10 @@ With special <a href="https://github.com/timoxley/wcwidth">wcwidth</a> library y
 Chinese or Japanese. The package is on npm but it don't include the file proper for browsers (no UMD - Universal Module Definition), you can spam the author
 on this <a href="https://github.com/timoxley/wcwidth/issues/2">issue on github</a>.
 
-But you can grab it from terminal own CDN provided by [KeyCDN](https://www.keycdn.com/).
+But you can grab it from jsdelivr:
 
 ```html
-<script src="https://cdn.terminal.jcubic.pl/wcwidth.js"></script>
-```
-
-or from jsdelivr:
-
-```html
-<script src="https://cdn.jsdelivr.net/gh/jcubic/leash@devel/lib/wcwidth.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
 ```
 
 ### Prompt
