@@ -79,7 +79,7 @@ Of course, you can use local files instead by downloading them directly, by inst
 
 To initialize the plugin and create your terminal, you need to invoke the plugin. To do that, you need to select some element of the page, by using a CSS selector with jQuery.
 
-To select an element with a specific ID you can use `$('#terminal')` or if you want to attach the terminal to `body` you can use `$('body')`.
+To select an element with a specific ID you can use `$('#terminal')` (you will need to have `<div id="terminal"></div>` in html) or if you want to attach the terminal to `body` (to have full screen terminal) you can use `$('body')`.
 
 If you have your script using
 
@@ -113,36 +113,6 @@ $(function() {
    $('#terminal').terminal();
 });
 ```
-
-### Accessing Terminal Object
-
-Terminal object have useful methods that you can invoke; the whole list of methods is in the API documentation. To access this object, which is a standard jQuery object with additional methods, you can use:
-
-* the object value returned by the plugin:
-
-```javascript
-var term = $('#terminal').terminal(function(command) {
-    
-});
-term.echo('foo');
-```
-
-* the `this` keyword in every function (if you can't you can report a bug).
-```javascript
-$('#terminal').terminal(function(command) {
-    this.echo('foo');
-});
-```
-
-* the third option is to specify the Terminal object as last parameter of some functions (it should be in all of them). It is a legacy feature to not break the API.
-
-```javascript
-$('#terminal').terminal(function(command, term) {
-    term.echo('foo');
-});
-```
-
-This is useful, for example, when you use ES5 and `setTimeout` and want to call `echo` after a delay (with ES6 you can use the *arrow* function).
 
 ### Creating the interpreter
 
@@ -233,9 +203,39 @@ $(function() {
 });
 ```
 
+### Accessing Terminal Object
+
+Terminal object have useful methods that you can invoke; the whole list of methods is in the [API documentation](https://terminal.jcubic.pl/api_reference.php). To access this object, which is a standard jQuery object with additional methods, you can use:
+
+* the object value returned by the plugin:
+
+```javascript
+var term = $('#terminal').terminal(function(command) {
+    
+});
+term.echo('foo');
+```
+
+* the `this` keyword in every function (if you can't you can report a bug).
+```javascript
+$('#terminal').terminal(function(command) {
+    this.echo('foo');
+});
+```
+
+* the third option is to specify the Terminal object as last parameter of some functions (it should be in all of them). It is a legacy feature to not break the API.
+
+```javascript
+$('#terminal').terminal(function(command, term) {
+    term.echo('foo');
+});
+```
+
+This is useful, for example, when you use ES5 and `setTimeout` and want to call `echo` after a delay (with ES6 you can use the *arrow* function).
+
 ### What can you echo?
 
-The `echo` method of the terminal instance is versatile; you can call `echo` with the following:
+The `echo` method of the terminal instance it the most common function that you will use with the terminal, is quite versatile; you can use `echo` to print stuff on the terminal, you can call it with the following:
 * string
 * array of strings
 * any other value that can have toString method (so also numbers or boolean that are boxed in Number object or any custom object that have toString method).
