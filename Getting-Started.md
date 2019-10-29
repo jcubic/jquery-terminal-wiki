@@ -614,7 +614,7 @@ With special <a href="https://github.com/timoxley/wcwidth">wcwidth</a> library y
 Chinese or Japanese. The package is on npm but it don't include the file proper for browsers (no UMD - Universal Module Definition), you can spam the author
 on this <a href="https://github.com/timoxley/wcwidth/issues/2">issue on github</a>.
 
-But you can grab it from jsdelivr:
+But you can grab the version I've created using browserify, you can get it from jsdelivr (you can also host it yourself):
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
