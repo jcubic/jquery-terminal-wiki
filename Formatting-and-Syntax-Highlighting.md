@@ -26,8 +26,10 @@ term.echo('[[!;;;;https://github.com/jcubic/jquery.terminal]visit repo]');
 To render images you can use same formatting syntax using `@` character as first style option in brackets:
 
 ```javascript
-term.echo('[[@;;;;foo.jpg]]');
+term.echo('[[@;;;;https://placekitten.com/300/300]]');
 ```
+
+Images handing was added in version 2.8.0, with more updates in 2.9.0.
 
 ### Syntax highlighting
 
@@ -113,6 +115,12 @@ $.terminal.new_formatter([/world/g, '[[;green;]world]']);
 ```
 
 Note: you should use *regular expressions* with `g` to be sure to replace all instances of the string. If your string or regex is without `g`, it will replace only the first instance of the string.
+
+Here is example to add underline formatter, that look like this `_hello world_ _this is underline_`.
+
+```javascript
+$.terminal.new_formatter([/_([^_]+)_/g, '[[u;;]$1]']);
+```
 
 Because formatters are in the `$.terminal` namespace, they are globals for the whole page, so you can't have two terminals on the page and each one have different formatters (yes you can have multiple terminals on on page).
 
