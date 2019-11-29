@@ -8,14 +8,10 @@
 7. [What can you echo?](#user-content-what-can-you-echo)
 8. [Greetings](#user-content-greetings)
 16. [Command line history](#user-content-command-line-history)
-17. [Reverse history search](#user-content-reverse-history-search)
-18. [Chinese and Japanese character support](#user-content-chinese-and-japanese-character-support)
 19. [Prompt](#user-content-prompt)
 20. [Reading text from user](#user-content-reading-text-from-user)
 21. [Masking password](#user-content-masking-password)
-22. [Authentication](#user-content-authentication)
 23. [Key Shortcuts](#user-content-key-shortcuts)
-24. [Events](#user-content-events)
 25. [Asynchronous Commands](#user-content-asynchronous-commands)
 27. [Executing commands from JavaScript](#user-content-executing-commands-from-javascript)
 29. [Updating lines](#user-content-updating-lines)
@@ -281,24 +277,6 @@ If you want the history to be persist only during the current session, you can u
 
 But this will make all the data actually saved to memory (the same will happen with all data required by terminal like authentication token or interpreter names).
 
-### Reverse history search
-
-The feature related to history is shortcut CTRL+R it's reverse search and it work the same like in bash, you can type text and it will scan your history to find proper
-command. if you press enter you will exit search the current interpreter will be invoked. You will also exit if you use arrow keys, the command will be selected.
-If you wan to cancel search you can press CTRL+G the same as in bash.
-
-### Chinese and Japanese character support
-
-With special <a href="https://github.com/timoxley/wcwidth">wcwidth</a> library you can have proper text wrapping on terminal with wider characters like those from
-Chinese or Japanese. The package is on npm but it don't include the file proper for browsers (no UMD - Universal Module Definition), you can spam the author
-on this <a href="https://github.com/timoxley/wcwidth/issues/2">issue on github</a>.
-
-But you can grab the version I've created using browserify, you can get it from jsdelivr (you can also host it yourself):
-
-```html
-<script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
-```
-
 ### Prompt
 
 The prompt is the string in beginning of the command line, you can specify the prompt using:
@@ -391,68 +369,6 @@ $('#terminal').terminal(function() {
 
 this will set mask to - character if you use true it will us asterisk.
 
-### Authentication
-
-If you want to restrict the users that can use terminal you can use authentication, the simplest way is login option. If you have JSON-RPC interpreter you can set this
-option to true or stings and it will call login RPC method or method specified by the option and if RPC return truthy value, the best is token hash as string, it
-will log you in the the terminal. And from now own each call to RPC method will have token as first argument so each method on the server should check if token is valid.
-
-You can also specify function as login, where you can use naive check for password in JavaScript or call the server to verify the user, which is proper way to do.
-
-```javascript
-$(function() {
-    $('#terminal').terminal({}, {
-        login: function(user, password) {
-            return fetch('auth.py', {
-                method: 'POST',
-                body: JSON.stringify({user, password}),
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json());
-        }
-    });
-});
-```
-
-Here we use fetch API to send POST request to the server in auth.py URI and whatever JSON it return it will be used as token, the server need to return text "<generated token>" or null (false will also work).
-
-If you want to have prompt like in one of the previous sections (different prompt for login in users and guests) then you can't use login option because this will not
-allow to use the terminal without login. Instead you need to create a command that will call login method.
-
-```javascript
-$(function() {
-    $('#terminal').terminal({
-        login: function() {
-            if (this.get_token()) {
-                this.error("you're already logged in");
-            } else {
-                this.login(function(user, password, callback) {
-                    // this is just example in real applications check need to be on the server
-                    // and token should be uniq generated value that you can
-                    // check if it's valid on the server
-                    if (user === 'john' && password === 'connor') {
-                        callback("SKYNET");
-                    } else {
-                        callback(null);
-                    }
-                });
-            }
-        }
-    }, {
-        prompt: function(callback) {
-            if (this.get_token()) {
-                callback(this.login_name() + '@server$ ');
-            } else {
-                callback('guest@server$ ');
-            }
-        }
-    });
-});
-```
-
-login method work the same as login option. Callback is old API that was not removed to not introduce breaking changes.
-
 ### Key Shortcuts
 
 The best way to add key shortcuts is to use keymap option which accept object with shortcut as strings and function that will be invoked on this shortcut:
@@ -491,13 +407,6 @@ this will change the prompt with counter for each enter.
 
 The order of mnemonics look like this CTRL+META+SHIFT+ALT and at the begining is special modifier HOLD the shortcut will be invoked when you hold the key.
 
-### Events
-
-Terminal have a bunch of events, you can specify them in options, most events have only terminal as with few exceptions like `keypress` or `keydown`, which was old API before
-`keymap` was added, that have event as first argument and send is terminal. There are also events that have current command as first argument or error object.
-
-[List of all events can be found in API reference](https://terminal.jcubic.pl/api_reference.php#onAfterCommand)
-
 ### Asynchronous Commands
 
 If you have Async commands, which mean commands that execute later in time you should pasue the terminal and resume it after you've done processing, this will ensure
@@ -522,6 +431,29 @@ $('#terminal').terminal(function(command) {
     setTimeout(() => {
         this.echo('delay command ' + command).resume();
     }, 1000);
+});
+```
+
+You can also use any function that return a promise like fetch:
+
+```javascript
+$('#terminal').terminal(function(command, term) {
+    return fetch('/server').then(function(res) {
+        return res.text();
+    });
+    // or ES6 shortcut
+    // return fetch('/server').then(r => r.text());
+});
+```
+
+Async/await also works.
+
+```javascript
+$('#terminal').terminal({
+    get: async function(path) {
+        let res = await fetch(path);
+        return res.text();
+    }
 });
 ```
 
@@ -573,7 +505,7 @@ Last type is invoking terminal shortcuts, you can do that with term.invoke_key m
 term.invoke_key("CTRL+R");
 ```
 
-this will invoke control + R key which by default is bind to reverse search. This will invoke any shortcut added by keymap option as well as
+this will invoke control + R key which by default is bind to [reverse search](/jcubic/jquery.terminal/wiki/Reverse-history-search). This will invoke any shortcut added by keymap option as well as
 build in keymap options.
 
 ### Updating lines
