@@ -234,6 +234,8 @@ The `echo` method of the terminal instance it the most common function that you 
 
 A limitation is that you can't call `echo` with an array of other values, only an array of strings. And JavaScript objects are printed as `[object Object]` (because this what's returned by the toString method), but this may change and new printing objects may be introduced in the future.
 
+**TODO: Advanced echo**
+
 ### Greetings
 
 The second argument to the terminal plugin is an object where you can put your options. The "greetings" is one of them. It is the first text that is echoed into terminal.
@@ -264,39 +266,6 @@ $(function() {
 You can use callback to call greetings in any time (e.g. as response to server call).
 
 NOTE: if you want to create an ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "", you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes.
-
-### Parsing commands
-
-
-### Less command
-
-If you want to have *less* like command, you can use an additional file:
-
-```
-https://unpkg.com/jquery.terminal@1.x.x/js/less.js
-```
-
-This add a new jQuery plugin that can be invoked on Terminal instance, which is also a jQuery Object.
-
-```javascript
-$('body').terminal({
-    less: function(file) {
-       $.get(file, (text) => this.less(text));
-    }
-});
-```
-
-This example shows how to invoke `less` with any syntax highlighting you have. If you don't want to have [formatting](/jcubic/jquery.terminal/wiki/Formatting-and-Syntax-Highlighting) but only for less, then you should not use the function `syntax` but use the function `$.terminal.prism`:
-
-```javascript
-$('body').terminal({
-    less: function(file) {
-       var language = {html: 'website': js: 'javascript', css: 'css'};
-       var ext = file.match(/\.([^.]+)$/)[1];
-       $.get(file, (text) => this.less($.terminal.prism(language[ext], text)));
-    }
-});
-```
 
 ### Command line history
 
