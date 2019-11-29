@@ -39,6 +39,31 @@ There is one additional *syntax highliting* added by the *Terminal prism wrapper
 
 Syntax highlighters are also useful if you want to have command like *cat* or *less* where
 
+### ANSI Escape codes
+
+ANSI escape codes are a way to format text most commonly seen in Unix terminals. The formatting looks like this:
+
+```
+\x1b[32mHello\x1b[m
+```
+
+This will display the text **Hello** in *green*. `1B` is the hexadecimal for 27 which is the escape key.
+
+Explanation of the [ANSI ESCAPE codes can be found on Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code).
+
+To use ANSI formatting in jQuery Terminal, you only need to include one file:
+
+```
+https://unpkg.com/jquery.terminal@1.x.x/js/unix_formatting.js
+```
+
+The file also handles what's called overtyping (which is used, for example, in the output of the man command on Linux/Unix),  where you have text like this
+```
+A\x08AB\x08BC\x08C
+```
+
+which will display **ABC** in bold text. `\x08` is the code for the backspace key; so you simply write two times the same character to make it **bold**; if you use `A\x08_` you will get underline instead. Backspace (`\x08` characters) should work the same as in the Linux terminal.
+
 ### Custom Syntax highlighting
 
 You can also create your own formatters (this is how terminal's prism.js works). The low level mechanism for formatters consists of arrays:
