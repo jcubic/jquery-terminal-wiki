@@ -1,5 +1,3 @@
-### Tab completion
-
 Tab completion is another useful feature of jQuery Terminal. By default, if you press `<TAB>`, it will be inserted into the terminal (even though it will be replaced by 4 spaces, it will still be treated as one character).
 
 To change the default behavior, you need to use the [completion option](https://terminal.jcubic.pl/api_reference.php#completion).
