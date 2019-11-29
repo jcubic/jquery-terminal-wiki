@@ -7,13 +7,6 @@
 6. [Creating the interpreter](#user-content-creating-the-interpreter)
 7. [What can you echo?](#user-content-what-can-you-echo)
 8. [Greetings](#user-content-greetings)
-9. [Parsing commands](#user-content-parsing-commands)
-10. [Formatting](#user-content-formatting)
-11. [Syntax highlighting](#user-content-syntax-highlighting)
-12. [Less command](#user-content-less-command)
-13. [ANSI Escape codes](#user-content-ansi-escape-codes)
-14. [Custom Syntax highlighting](#user-content-custom-syntax-highlighting)
-15. [Tab completion](#user-content-tab-completion)
 16. [Command line history](#user-content-command-line-history)
 17. [Reverse history search](#user-content-reverse-history-search)
 18. [Chinese and Japanese character support](#user-content-chinese-and-japanese-character-support)
@@ -24,9 +17,7 @@
 23. [Key Shortcuts](#user-content-key-shortcuts)
 24. [Events](#user-content-events)
 25. [Asynchronous Commands](#user-content-asynchronous-commands)
-26. [Saving State](#user-content-saving-state)
 27. [Executing commands from JavaScript](#user-content-executing-commands-from-javascript)
-28. [Invoking Commands and terminal methods from Server](#user-content-invoking-commands-and-terminal-methods-from-server)
 29. [Updating lines](#user-content-updating-lines)
 
 ### Introduction
@@ -276,139 +267,6 @@ NOTE: if you want to create an ASCII logo as greetings, you will need to escape 
 
 ### Parsing commands
 
-You can parse and process commands with options like in the *linux* command line or any other shell.
-If you're using a function as interpreter, you can parse the commands to split the command into arguments.
-
-There are two pairs of functions:
-
-* split_arguments
-* parse_arguments
-
-and
-
-* split_command
-* parse_command
-
-x_command will create an object from a parsed string
-
-```
-{name, args, rest, command, args_quotes}
-```
-
-* name - text before the first space
-* args - the array of arguments parsed with x_arguments
-* rest - the rest of the text without name and space as is
-* command - the input string as is
-* args_quotes - array of strings with quote used ' or "
-
-x_arguments functions will create an array from the arguments splitted on space. x_command functions use x_arguments functions to process the arguments array.
-
-The processing can handle spaces inside regular expressions and strings.
-
-Another function was added in version *1.17.0*: `$.terminal.parse_options`. It parses the arguments and accepts two parameters either a string or an array and an object with options. Right now, there is only one option available which is `boolean`. It should be an array of strings, to indicate options that don't have argument.
-
-`parse_options` is very simple and is very similar to [yargs parser](https://www.npmjs.com/package/yargs-parse). It returns an object with a field `_`as an array for the "free" options and each said "free" options is saved as a key with value set to `true`. The other options appear as key with their value as string:
-
-```javascript
-$.terminal.parse_options(["-x", "foo", "-aby", "bar"], {boolean: ['y']});
-```
-
-this will return
-
-```
-{_: ["bar"], x: "foo", y: true, a: true, b: true}
-```
-
-If you're using an object as interpreter, you can use the following **ES5** syntax to get an `options` array:
-```javascript
-$(function() {
-    $('#terminal').terminal({
-        fetch: function() {
-            var args = Array.from(arguments);
-            var options = $.terminal.parse_options(args);
-            if (!options.url) {
-                this.error("You need to specify the url");
-            }
-            if (options.method == 'POST') {
-                 // do POST request
-            } else {
-                 // do GET request
-            }
-        }
-    }, {checkArity: false});
-});
-
-Or the **ES6** version, if you like:
-```
-
-```javascript
-$(function() {
-    $('#terminal').terminal({
-        fetch: function(...args) {
-            var options = $.terminal.parse_options(args);
-            if (!options.url) {
-                this.error("You need to specify the url");
-            }
-            if (options.method == 'POST') {
-                 // do POST request
-            } else {
-                 // do GET request
-            }
-        }
-    }, {checkArity: false});
-});
-```
-
-and you will get these responses for  these commands:
-
-```
-fetch --method "POST" - will show error that the URL is not specified
-fetch --url https://example.com/file.txt --method POST - will fetch the file using POST
-fetch --url https://example.com/file.txt - will fetch the file using GET method
-```
-
-Another usage example of this function can be found in the [API reference](https://terminal.jcubic.pl/api_reference.php#parse_options).
-
-### Formatting
-
-Formatting the output of the `echo` method use a special syntax that can be used to format your text; you can make your text bold, italic or underlined or even glow.
-
-```javascript
-term.echo('[[b;red;white]hello world]');
-```
-
-This example will create a red bold text on a white background.
-
-More about the [syntax of Terminal formatting in API reference](https://terminal.jcubic.pl/api_reference.php#echo).
-
-If you need to echo brackets, the best way is to use the `$.terminal.escape_brackets` function.
-
-### Syntax highlighting
-
-If you want to define *syntax highlighting* for instance taken from *python* or *SQL*, there is the possibility to not have to specify this formatting on your own but use the [PrismJS library](https://prismjs.com/). This will also work while you type. To use *PrismJS*, you first need to include the files needed for the library:
-
-```
-https://unpkg.com/prismjs/prism.js
-https://unpkg.com/prismjs/themes/prism.css
-```
-
-by default *PrismJS* only includes the HTML, CSS and JavaScript syntax. If you need others like *python* or *SQL*, you need to include one of the [component files](https://unpkg.com/prismjs/components/); they are also on *npm* and on [GitHub](https://github.com/PrismJS/prism).
-
-After you have included the *PrismJS* files, you laso need to include the jQuery Terminal Prism wrapper:
-
-```
-https://unpkg.com/jquery.terminal@1.x.x/js/prism.js
-```
-
-Finally, you can call the `syntax` function somewhere after the terminal and prismJS files have been "imported". It doesn't need to be in `$(function() {});`. To get python highlighting, as an example:
-
-```javascript
-$.terminal.syntax('python')
-```
-
-There is one additional *syntax highliting* added by the *Terminal prism wrapper* which is for website to highlight HTML, CSS and javascript. This is mainly for CSS and js that is defined in the *style* parameter for CSS and inside `<script>...</script> for javascript.
-
-Syntax highlighters are also useful if you want to have command like *cat* or *less* where
 
 ### Less command
 
@@ -428,7 +286,7 @@ $('body').terminal({
 });
 ```
 
-This example shows how to invoke `less` with any syntax highlighting you have. If you don't want to have formatting but only for less, then you should not use the function `syntax` but use the function `$.terminal.prism`:
+This example shows how to invoke `less` with any syntax highlighting you have. If you don't want to have [formatting](/jcubic/jquery.terminal/wiki/Formatting-and-Syntax-Highlighting) but only for less, then you should not use the function `syntax` but use the function `$.terminal.prism`:
 
 ```javascript
 $('body').terminal({
@@ -437,154 +295,6 @@ $('body').terminal({
        var ext = file.match(/\.([^.]+)$/)[1];
        $.get(file, (text) => this.less($.terminal.prism(language[ext], text)));
     }
-});
-```
-
-### ANSI Escape codes
-
-ANSI escape codes are a way to format text most commonly seen in Unix terminals. The formatting looks like this:
-
-```
-\x1b[32mHello\x1b[m
-```
-
-This will display the text **Hello** in *green*. `1B` is the hexadecimal for 27 which is the escape key.
-
-Explanation of the [ANSI ESCAPE codes can be found on Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code).
-
-To use ANSI formatting in jQuery Terminal, you only need to include one file:
-
-```
-https://unpkg.com/jquery.terminal@1.x.x/js/unix_formatting.js
-```
-
-The file also handles what's called overtyping (which is used, for example, in the output of the man command on Linux/Unix),  where you have text like this
-```
-A\x08AB\x08BC\x08C
-```
-
-which will display **ABC** in bold text. `\x08` is the code for the backspace key; so you simply write two times the same character to make it **bold**; if you use `A\x08_` you will get underline instead. Backspace (`\x08` characters) should work the same as in the Linux terminal.
-
-### Custom Syntax highlighting
-
-You can also create your own formatters (this is how terminal's prism.js works). The low level mechanism for formatters consists of arrays:
-
-```javascript
-$.terminal.defaults.formatters
-```
-
-which can be arrays of functions or arrays with regular expression and strings.
-
-In functions, you can do any text replacement and return strings with the specific Terminal formatting markup.
-
-To add a new formatter, you can push value to this array, overwrite it with a new array or use the helper function `$.terminal.new_formatter`. This function will inject your formatter, before any nested formatting formatter,  that is the default formatter; it allows you to have nested formatting like in HTML `[[;red;]foo [[;blue;]bar] baz]`
-
-If you use the `new_formatter` function, your formatter also can have nesting.
-
-For instance, if you want the text *hello* to be red and the text *world* to be green, you can use this formatter:
-
-```javascript
-$.terminal.new_formatter(function(string) {
-    return string.replace(/hello/g, '[[;red;]hello]').replace(/world/g, '[[;green;]world]');
-});
-```
-
-You can also put two arrays:
-
-```javascript
-$.terminal.new_formatter([/hello/g, '[[;red;]hello]']);
-$.terminal.new_formatter([/world/g, '[[;green;]world]']);
-```
-
-Note: you should use *regular expressions* with `g` to be sure to replace all instances of the string. If your string or regex is without `g`, it will replace only the first instance of the string.
-
-Because formatters are in the `$.terminal` namespace, they are globals for the whole page, so you can't have two terminals on the page and each one have different formatters (yes you can have multiple terminals on on page).
-
-This may change in the future, but it will be a breaking change so it could be in the next major version. If you're using a 1.x.x version, from unpkg.com, you will not be affected.
-
-NOTE: if you need to create formatter that change the length of the string (like replacing *foo* with *hello world*) then you need to use the special function [$.terminal.tracking_replace](https://terminal.jcubic.pl/api_reference.php#tracking_replace). It will track the cursor position after replacement, which was mostly created by [Stack Overflow user T.J. Crowder](https://stackoverflow.com/a/46756077/387194).
-
-The cursor movement will be a little weird because the cursor will be at the beginning of the resulting string and then at the end of it while you move the virtual cursor on the original string.
-So you will not be able to remove any character in the input string.
-
-To have a correct cursor position, without the above limitations, you need to use the function like this:
-
-```javascript
-$.terminal.new_formatter(function(string, position) {
-    return $.terminal.tracking_replace(string, /hello/g, '[[;red;]hello world]', position);
-});
-```
-
-This will be handled for you if you use a simple array. But this is the only option if you need to put some kind of logic in the replacement.
-
-The following code will be roughly the same as above:
-
-```javascript
-$.terminal.new_formatter([/hello/g, '[[;red;]hello world]']);
-```
-
-Note: one more limitation of formatters is that they are executed on strings between formatting so above formatter will not create infinite loop of replacement. With the exception of formatter like `$.terminal.nested_formatting` which is always added to the list when including the library.
-
-If you want to have formatters based on interpreters, like for instance, a *mysql* command that have *SQL* syntax and a *js* command to have *javascript* formatting etc... then you can create a stack of formatters (stack is the kind of the data structure [more on Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))). Example how to do that is in [example section on a web site](https://terminal.jcubic.pl/examples.php#syntax_highlight).
-
-### Tab completion
-
-Tab completion is another useful feature of jQuery Terminal. By default, if you press `<TAB>`, it will be inserted into the terminal (even though it will be replaced by 4 spaces, it will still be treated as one character).
-
-To change the default behavior, you need to use the [completion option](https://terminal.jcubic.pl/api_reference.php#completion).
-
-It you have an object as first argument (interpreter) or a JSON-RPC string with `system.describe`
-
-```javascript
-$('#terminal').terminal({
-  open: function() {
-  },
-  close: function() {
-  },
-  'open-foo': function() {
-  }
-}, {
-  completion: true
-});
-```
-
-If you type `op` and press `<TAB>`, it will insert `open` then if you press `<TAB>` a second time, it will list `open` and `open-foo`.
-
-The second possibility is if you use a function as first argument (interpreter), then you can use an array:
-
-```javascript
-$('#terminal').terminal(function(command) {
-    
-}, {
-  completion: ['pwd', 'pwdhash', 'pwdhash-bin', 'pwdx']
-});
-```
-
-If you need logic in the completion process: say for instance you have the command `git` and want to complete it into `git clone` and `git checkout`, you can use this:
-
-```javascript
-$('#terminal').terminal(function(command) {
-    
-}, {
-  completion: function(string, callback) {
-      if (this.get_command().match(/^git /)) {
-         callback(['checkout', 'clone', 'pull', 'push', 'commit']);
-      } else {
-        callback(['ls', 'cat', 'git']);
-      }
-  }
-});
-```
-
-Additionally, you can return a promise from completion; you can use `Promise.resolve()`, but what is more useful is if you make the completion on the server:
-
-```javascript
-$('body').terminal(function(command) {
-    
-}, {
-  completion: function(string, callback) {
-      return fetch('completion.py', {string, command: this.get_command()}).then(res => res.json());
-  }
 });
 ```
 
@@ -846,47 +556,6 @@ $('#terminal').terminal(function(command) {
 });
 ```
 
-### Saving State
-
-You can save two types of states:
-
-1. You can save state of the whole terminal including prompt, cursor position, lines on terminal or your interpreter.
-to save state you can use function
-```javascript
-var view = term.export_view(); 
-```
-
-it will return object that can be use to restore the state of the terminal:
-
-```javascript
-term.import_view(view); 
-```
-
-NOTE: The object that is returned by export_view will not work with JSON.stringify unless you have a way to serialize functions. But it
-will work with few limitations if you strip out functions.
-
-2. Another type of state is history of commands you type in single session that is saved in url hash (text after # that is used to jump
-to location with same id in html).
-
-To start saving commands in hash you can invoke function:
-
-```javascript
-term.history_state(true);
-```
-
-Saving to hash is controlled by option historyState so you can set it to true but be careful because there is limit of URL length.
-
-You can also add command to hash using
-
-```javascript
-term.save_state('foo');
-```
-
-If you refresh the browser and have option execHash set to true it will execute all commands in order. And you can share the link with commands
-to your app.
-
-But there is limitation different browsers have different max URL limit, so best is only save few commands. Setting option `historyState: true`. Also can make your app break because of this limit. So best is to have some command that toggle saving in hash using `term.history_state` function.
-
 ### Executing commands from JavaScript
 
 There are few different types of executing commands, you can use method term.exec to invoke different command:
@@ -937,28 +606,6 @@ term.invoke_key("CTRL+R");
 
 this will invoke control + R key which by default is bind to reverse search. This will invoke any shortcut added by keymap option as well as
 build in keymap options.
-
-### Invoking Commands and terminal methods from Server
-
-echo command is quite powerful with it you can execute different method and because of this you can invoke different command from server.
-
-In JSON-RPC you can return string "[[ exit ]]" and it will logout from the interpreter if you have login or call pop if you're in nested interpreter. There is also one feature that's disabled by default for security reasons (see 
-[security section in API reference](https://terminal.jcubic.pl/api_reference.php#security)). To execute terminal method, like for instance shortcut CTRL+R from server, you
-can use this syntax:
-
-```
-[[ terminal::invoke_key("CTRL+R") ]]
-```
-
-the same goes to cmd instance methods, you can insert text and change cursor position to the beginning of the line, from server with this string:
-
-`[[ cmd::set("hello") ]][[ cmd::position(0) ]]`
-
-To enable this feature you need to set `invokeMethods: true` option.
-
-The only limitations is that you can't return value from this method, you can't return object and invoke method on it (so you can't disable history but this may change). The other limitation is that arguments need to be valid JSON so this will not work:
-
-`[[ cmd::set('hello') ]]`
 
 ### Updating lines
 
