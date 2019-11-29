@@ -12,6 +12,23 @@ More about the [syntax of Terminal formatting in API reference](https://terminal
 
 If you need to echo brackets, the best way is to use the `$.terminal.escape_brackets` function.
 
+### Links
+
+To render links you can just echo URL or using formatting syntax:
+
+```javascript
+term.echo('[[!;;;;https://github.com/jcubic/jquery.terminal]visit repo]');
+```
+
+
+### Images
+
+To render images you can use same formatting syntax using `@` character as first style option in brackets:
+
+```javascript
+term.echo('[[@;;;;foo.jpg]]');
+```
+
 ### Syntax highlighting
 
 If you want to define *syntax highlighting* for instance taken from *python* or *SQL*, there is the possibility to not have to specify this formatting on your own but use the [PrismJS library](https://prismjs.com/). This will also work while you type. To use *PrismJS*, you first need to include the files needed for the library:
