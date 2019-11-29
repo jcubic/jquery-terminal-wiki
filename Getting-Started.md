@@ -230,7 +230,14 @@ The `echo` method of the terminal instance it the most common function that you 
 
 A limitation is that you can't call `echo` with an array of other values, only an array of strings. And JavaScript objects are printed as `[object Object]` (because this what's returned by the toString method), but this may change and new printing objects may be introduced in the future.
 
-**TODO: Advanced echo**
+From version 2.9.0 new feature was added to allow echo DOM nodes and jQuery Objects. So you can use:
+
+```javascript
+var div = $('<p>Hello <strong>World</strong></p>')
+term.echo(div);
+```
+
+You can also echo any html element like canvas or video. And with new API in 2.9.0 you can echo anything if you add renderHandler. (TODO add link to API or create Wiki Page).
 
 ### Greetings
 
