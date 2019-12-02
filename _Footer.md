@@ -1,0 +1,1 @@
+Copyright (C) 2019 Jakub T. Jankiewicz (Wiki content under [Creative Commons (CC BY-SA 4.0) License](https://creativecommons.org/licenses/by-sa/4.0/), but only if you try to publish whole or big part of the content).
