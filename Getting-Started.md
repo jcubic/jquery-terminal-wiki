@@ -183,6 +183,19 @@ $(function() {
     });
 });
 ```
+> Note: if you want fully working terminal you also should import css.
+
+to import extensions like (unix formatting use) best is to use same imports-loader and look the source code, for UMD definition how to call the function.
+
+```javascript
+import terminal from 'imports-loader?define=>false!jquery.terminal';
+import 'jquery.terminal/css/jquery.terminal.css';
+import unix from 'imports-loader?define=>false!jquery.terminal/js/unix_formatting';
+const $ = terminal(window);
+unix(window, $);
+// unix formatting also return jQuery object, so you can stack the functions
+// const $ = unix(window, terminal(window));
+```
 
 > NOTE: define in import, will force to use AMD in UMD definition that is inside jQuery Terminal,
 > and that definition return function where you're passing window object and optional jQuery Instance.
