@@ -54,7 +54,7 @@ A basic HTML page using unpkg.com CDN will look like this
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js"></script>
-<link href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
 </head>
 <body>
 </body>
