@@ -45,7 +45,7 @@ by default *PrismJS* only includes the HTML, CSS and JavaScript syntax. If you n
 After you have included the *PrismJS* files, you laso need to include the jQuery Terminal Prism wrapper:
 
 ```
-https://unpkg.com/jquery.terminal@1.x.x/js/prism.js
+https://unpkg.com/jquery.terminal/js/prism.js
 ```
 
 Finally, you can call the `syntax` function somewhere after the terminal and prismJS files have been "imported". It doesn't need to be in `$(function() {});`. To get python highlighting, as an example:
@@ -73,7 +73,7 @@ Explanation of the [ANSI ESCAPE codes can be found on Wikipedia](https://en.wiki
 To use ANSI formatting in jQuery Terminal, you only need to include one file:
 
 ```
-https://unpkg.com/jquery.terminal@1.x.x/js/unix_formatting.js
+https://unpkg.com/jquery.terminal/js/unix_formatting.js
 ```
 
 The file also handles what's called overtyping (which is used, for example, in the output of the man command on Linux/Unix),  where you have text like this
