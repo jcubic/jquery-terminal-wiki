@@ -35,13 +35,13 @@ https://unpkg.com/jquery.terminal@1.22.x
 This URL will redirect to file /js/jquery.terminal.js with the proper version number. If you want to have all the bug fixes for version 1 and all the features, you can use 1.x.x instead of 1.22.x. And if you want minified version of the library you can specify this URL:
 
 ```
-https://unpkg.com/jquery.terminal@1.x.x/js/jquery.terminal.min.js
+https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js
 ```
 
 It's the same principle for the css file, you can use an URL like:
 
 ```
-https://unpkg.com/jquery.terminal@1.x.x/css/jquery.terminal.min.css
+https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css
 ```
 
 ### HTML page
@@ -53,8 +53,8 @@ A basic HTML page using unpkg.com CDN will look like this
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://unpkg.com/jquery.terminal@1.x.x/js/jquery.terminal.min.js"></script>
-<link href="https://unpkg.com/jquery.terminal@1.x.x/css/jquery.terminal.min.css"/>
+<script src="https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js"></script>
+<link href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
 </head>
 <body>
 </body>
