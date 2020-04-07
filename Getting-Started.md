@@ -22,6 +22,7 @@
 jQuery Terminal is a **JavaScript library** that requires **jQuery** to work properly. To create an app using jQuery Terminal, first you need to create an html page, and then include jQuery and both the JavaScript and CSS files from jQuery Terminal. You can also use **webpack** or other *bundlers* but we will not discuss this here.
 In this tutorial, you will learn all the basics needed to create your own Terminal in a webpage and also the explanations for all the features.
 
+If you prefer Tutorial form read this article: [How to create interactive terminal like website?](https://itnext.io/how-to-create-interactive-terminal-like-website-888bb0972288).
 ### Unpkg CDN
 
 The best way to get jQuery Terminal is from [unpkg.com](https://unpkg.com/#/) that serves files from [npm repository](https://npmjs.com). With it, you don't need to host the files yourself. It's useful if you want to create a quick proof of concept or if you want to use one of demo services like Codepen, JSFiddle.
