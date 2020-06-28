@@ -59,9 +59,9 @@ $(function() {
         }
     }, {checkArity: false});
 });
+```
 
 Or the **ES6** version, if you like:
-```
 
 ```javascript
 $(function() {
