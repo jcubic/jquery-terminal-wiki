@@ -50,11 +50,14 @@ $(function() {
             var options = $.terminal.parse_options(args);
             if (!options.url) {
                 this.error("You need to specify the url");
-            }
-            if (options.method == 'POST') {
-                 // do POST request
+            } else if (options.method == 'POST') {
+                 return fetch(options.url, {method: 'POST'}).then(function(res) {
+                    return res.text();
+                 });
             } else {
-                 // do GET request
+                 return fetch(options.url).then(function(res) {
+                    return res.text();
+                 });
             }
         }
     }, {checkArity: false});
@@ -70,11 +73,10 @@ $(function() {
             var options = $.terminal.parse_options(args);
             if (!options.url) {
                 this.error("You need to specify the url");
-            }
-            if (options.method == 'POST') {
-                 // do POST request
+            } else if (options.method == 'POST') {
+                 return fetch(options.url, {method: 'POST'}).then(res => res.text());
             } else {
-                 // do GET request
+                 return fetch(options.url).then(res => res.text());
             }
         }
     }, {checkArity: false});
