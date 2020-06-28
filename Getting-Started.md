@@ -415,7 +415,7 @@ term.set_prompt(function(set_prompt) {
 
 this will display different prompt to login in users and normal users, about authentication later.
 
-As with any API you can return promise from prompt function:
+As with any terminal function, you can also return promise from prompt function:
 
 ```javascript
 $('#terminal').terminal("service.py", {
