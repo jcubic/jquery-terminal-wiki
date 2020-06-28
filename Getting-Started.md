@@ -651,3 +651,5 @@ term.update(term.last_index(), "hello")
 ```
 
 this will be the same as -1.
+
+If you want to remove last line you can use `term.remove_line(-1)` which is just alias for `term.update(-1, null);`
