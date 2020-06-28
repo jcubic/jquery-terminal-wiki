@@ -1,6 +1,6 @@
 echo command is quite powerful with it you can execute different method and because of this you can invoke different command from server.
 
-In JSON-RPC you can return string "[[ exit ]]" and it will logout from the interpreter if you have login or call pop if you're in nested interpreter. There is also one feature that's disabled by default for security reasons (see 
+In JSON-RPC you can return string `"[[ exit ]]"` and it will logout from the interpreter if you have login or call pop if you're in nested interpreter. There is also one feature that's disabled by default for security reasons (see 
 [security section in API reference](https://terminal.jcubic.pl/api_reference.php#security)). To execute terminal method, like for instance shortcut CTRL+R from server, you
 can use this syntax:
 
