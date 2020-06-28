@@ -447,10 +447,10 @@ $('#terminal').terminal({
 });
 ```
 
-This will change the prompt to last name: as wait until user press enter, then it will resolve the promise, so you will see text on thee screen with
+This will change the prompt to last name: and wait until user press enter, then it will resolve the promise, so you will see text on thee screen with
 your name.
 
-Unfortunately you can return the promise and in then return the string, because when you return a promise terminal will be paused, so you will not
+Unfortunately you can't return the promise and in then return the string, because when you return a promise terminal will be paused, so you will not
 see last name: prompt.
 
 Other option to read text from user is to use nested interpreter using push where you can have logic and ask for more then one thing.
@@ -472,11 +472,11 @@ $('#terminal').terminal({
 
 But there are differences, by default read will disable history with push you can have history if you want but you still can disable it using
 history `this.cmd().history().disable();` cmd is another plugin that is used internally but you can also use it on your own, it have simplified API.
-Here is [demo if simple terminal created using cmd plugin](https://codepen.io/jcubic/pen/XaoqGp). The other difference that read will invoke callback and promise with empty last name if user press enter here it will only work if last_name is not empty.
+Here is [demo if simple terminal created using cmd plugin](https://codepen.io/jcubic/pen/XaoqGp). The other difference is, that read will invoke callback and resolve promise with empty last name if user press enter (and don't type anything), here it will only work if last_name is not empty.
 
 ### Masking password
 
-If you want to read password from the user you can use method set mask you can be any string and each character you type will be replaced with this
+If you want to read password from the user you can use method set mask. It can be any string and each character you type will be replaced with this
 character, you can also use empty string to have password like in some unix commands like mysql.
 
 ```javascript
@@ -485,7 +485,7 @@ $('#terminal').terminal(function() {
 });
 ```
 
-this will set mask to - character if you use true it will us asterisk.
+this will set mask to `-` character if you use true it will us asterisk.
 
 ### Key Shortcuts
 
@@ -523,16 +523,16 @@ NOTE: this is just example of ENTER to have this behavior it's better to create 
 
 this will change the prompt with counter for each enter.
 
-The order of mnemonics look like this CTRL+META+SHIFT+ALT and at the begining is special modifier HOLD the shortcut will be invoked when you hold the key.
+The order of mnemonics look like this CTRL+META+SHIFT+ALT and at the beginning is special modifier HOLD. The shortcut will be invoked when you hold the key.
 
 ### Asynchronous Commands
 
-If you have Async commands, which mean commands that execute later in time you should pasue the terminal and resume it after you've done processing, this will ensure
+If you have Async commands, which mean commands that execute later in time you should pause the terminal and resume it, after you've done processing. This will ensure
 that your command will be invoked properly (mostly because of one feature which is invoking commands from URL hash or using exec method, discussed later in this document).
 If you don't care about order of commands you don't need to pause the terminal.
 
-To pause the terminal and don't accept input from user, you can use pause() method and to resume the state you can use `resume()` method you can also return promise
-from interpreter, but the resolved value will be printed on terminal, to avoid this you can resolve to undefined.
+To pause the terminal and don't accept input from user, you can use `pause()` method and to resume the state you can use `resume()` method. You can also return a promise
+from interpreter, but the resolved value will be printed on terminal, to avoid this you can resolve to undefined (or add empty then if you don't use Promise constructor).
 
 ```javascript
 $('#terminal').terminal(function(command, term) {
@@ -577,7 +577,7 @@ $('#terminal').terminal({
 
 ### Executing commands from JavaScript
 
-There are few different types of executing commands, you can use method term.exec to invoke different command:
+There are few different types of executing commands, you can use method `term.exec` to invoke different command:
 
 ```javascript
 $('#terminal').terminal({
@@ -599,7 +599,7 @@ you try to open
 you closed
 ```
 
-If you don't want that > close to be echo (by default exec act like if you type that command and press enter) you can call:
+If you don't want that `> close` to be echoed (by default exec act like if you type that command and press enter) you can call:
 
 ```javascript
 term.exec('close', true);
@@ -615,16 +615,18 @@ term.exec([
 
 and it will invoke commands in order, so if you have async commands it's important to have pause/resume or to returning promises from interpreter.
 
-Second type is invoking commands using url, if you saved some commands in url hash and if you refresh the browser, all the commands will be
-executed in order the same as exec with array.
+Second type of exec, is invoking commands using url, if you saved some commands in url hash and if you refresh the browser, all the commands will be
+executed in order the same as exec with array. To see this in action check [404 error page](https://terminal.jcubic.pl/404) and type: `record start` and `wikipedia terminal emulator`, it will create URL hash that store you commands and after you refresh it will execute your second command. With this you can save whole session but be careful because URL have limited number of characters. You can write something and share the link. One of the examples on the website show [this url](https://terminal.jcubic.pl/404#[[0,1,"jargon%20hacker"]]). That prints definition of Hacker from [Jargon File](https://en.wikipedia.org/wiki/Jargon_File).
 
-Last type is invoking terminal shortcuts, you can do that with term.invoke_key method. 
+Last type pf exec, is invoking terminal shortcuts, you can do that with term.invoke_key method. 
 ```javascript
 term.invoke_key("CTRL+R");
 ```
 
 this will invoke control + R key which by default is bind to [reverse search](/jcubic/jquery.terminal/wiki/Reverse-history-search). This will invoke any shortcut added by keymap option as well as
 build in keymap options.
+
+You can also execute commands from server see [[Invoking-Commands-and-terminal-methods-from-Server]].
 
 ### Updating lines
 
