@@ -415,6 +415,14 @@ term.set_prompt(function(set_prompt) {
 
 this will display different prompt to login in users and normal users, about authentication later.
 
+As with any API you can return promise from prompt function:
+
+```javascript
+$('#terminal').terminal("service.py", {
+    prompt: () => new Promise((resolve => setTimeout(() => resolve('>>> '), 400)))
+});
+```
+
 ### Reading text from user
 
 If you're in interpreter function and want to ask user for input and then process it (like in C scanf) you can use function read:
