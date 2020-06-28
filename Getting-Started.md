@@ -616,7 +616,7 @@ term.exec([
 and it will invoke commands in order, so if you have async commands it's important to have pause/resume or to returning promises from interpreter.
 
 Second type of exec, is invoking commands using url, if you saved some commands in url hash and if you refresh the browser, all the commands will be
-executed in order the same as exec with array. To see this in action check [404 error page](https://terminal.jcubic.pl/404) and type: `record start` and `wikipedia terminal emulator`, it will create URL hash that store you commands and after you refresh it will execute your second command. With this you can save whole session but be careful because URL have limited number of characters. You can write something and share the link. One of the examples on the website show [this url](https://tinyurl.com/ybbydgtf). That prints definition of Hacker from [Jargon File](https://en.wikipedia.org/wiki/Jargon_File).
+executed in order the same as exec with array. To see this in action check [404 error page](https://terminal.jcubic.pl/404) and type: `record start` and `wikipedia terminal emulator`, it will create URL hash that store you commands and after you refresh it will execute your second command. With this you can save whole session but be careful because URL have limited number of characters. You can write something and share the link. One of the examples on the website show [this url](https://tinyurl.com/ybbydgtf). That prints definition of Hacker from [Jargon File](https://en.wikipedia.org/wiki/Jargon_File). See [[Saving State]] to check how to enable saving commands in hash.
 
 Last type pf exec, is invoking terminal shortcuts, you can do that with term.invoke_key method. 
 ```javascript
