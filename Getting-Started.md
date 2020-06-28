@@ -369,7 +369,9 @@ $(function() {
 
 You can use callback to call greetings in any time (e.g. as response to server call).
 
-NOTE: if you want to create an ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "", you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes.
+NOTE: if you want to create an ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "", you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes. You can also use library filget.js that render ASCII where you don't need to worry about escaping. Here is [Figlet.js Demo](https://codepen.io/jcubic/pen/VwvEvmN?editors=0010).
+
+From version 2.10.0 you can return both string and promise that resolves to string from greetings. (promise was added in 2.9.0 and bug with returning string was fixed in 2.10.0).
 
 ### Command line history
 
