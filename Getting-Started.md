@@ -340,6 +340,8 @@ term.echo(div);
 
 You can also echo any html element like canvas or video. And with new API in 2.9.0 you can echo anything if you add renderHandler. (TODO add link to API or create Wiki Page).
 
+Check also [[Formatting and Syntax Highlighting]] for details about internal syntax of echo colors, basic styles, images and links.
+
 ### Greetings
 
 The second argument to the terminal plugin is an object where you can put your options. The "greetings" is one of them. It is the first text that is echoed into terminal.
