@@ -56,3 +56,46 @@ $('body').terminal(function(command) {
   }
 });
 ```
+
+## Full command completion
+
+if you want to complete part of the word or have different separators like parenthesis. There is a way when you can use full command and return full command as completion. To be able to show just the word you complete you can also change double tab to not show whole commands.
+
+This is example from [LIPS - Scheme based lisp](https://jcubic.github.io/lips/):
+
+```javascript
+$('body').terminal(function(command) {
+
+}, {
+    completionEscape: false,
+    wordAutocomplete: false,
+    doubleTab: function(string, maches, echo_command) {
+        echo_command();
+        this.echo(maches.map(command => {
+            return lips.tokenize(command).pop();
+        }));
+    },
+    completion: function(string) {
+        let tokens = lips.tokenize(this.before_cursor(), true);
+        tokens = tokens.map(token => token.token);
+        // Array.from is need to for jQuery terminal version <2.5.0
+        // when terminal is outside iframe and lips is inside
+        // jQuery Terminal was using instanceof that don't work between iframes
+        if (!tokens.length) {
+            return Array.from(env.get('env').apply(env).toArray());
+        }
+        const last = tokens.pop();
+        if (last.trim().length) {
+            const globals = Object.getOwnPropertyNames(window);
+            const prefix = tokens.join('');
+            const re = new RegExp('^' + jQuery.terminal.escape_regex(last));
+            var commands = env.get('env').apply(env).toArray().concat(globals).filter(name => {
+                return re.test(name);
+            }).map(name => prefix + name);
+            return Array.from(commands);
+        }
+    }
+});
+```
+
+You can test it in previous link, when you type `(let ((x 10)) (dis` and if you press tab it will complete `display`. And if you type `(begin (string` and press double tab it will give you all function names that start with "string".
