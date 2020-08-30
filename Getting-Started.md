@@ -364,7 +364,7 @@ $(function() {
    $('#terminal').terminal("service.py", {
       greetings: function(callback) {
          var text = "Welcome to Python Service";
-         callback(this.cols() > text.length ? text : 'Wellcome');
+         callback(this.cols() > text.length ? text : 'Welcome');
    });
 });
 ```
