@@ -1,4 +1,4 @@
-### Table of Contnent
+### Table of Contents
 1. [Introduction](#user-content-introduction)
 2. [Unpkg CDN](#user-content-unpkg-cdn)
 3. [Html page](#user-content-html-page)
