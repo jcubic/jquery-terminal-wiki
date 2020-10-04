@@ -58,7 +58,8 @@ create `index.html`:
 ```
 
 Then main script:
-```
+
+```javascript
 import $ from 'jquery';
 import terminal from 'imports-loader?additionalCode=var%20define=false;!jquery.terminal';
 terminal(window, $);
@@ -100,4 +101,4 @@ https://github.com/jcubic/terminal-webpack-prism
 
 that have working configuration of webpack with PrismJS.
 
-> NOTE: old syntax `define=>false` no longer work with latest webpack.
+> NOTE: old syntax `define=>false` no longer work with latest webpack and import-loader.
