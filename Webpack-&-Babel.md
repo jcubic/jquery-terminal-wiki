@@ -101,4 +101,4 @@ https://github.com/jcubic/terminal-webpack-prism
 
 that have working configuration of webpack with PrismJS.
 
-> NOTE: old syntax `define=>false` no longer work with latest webpack and import-loader.
+> NOTE: old syntax `define=>false` no longer work with latest webpack and imports-loader.
