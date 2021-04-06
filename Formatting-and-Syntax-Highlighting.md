@@ -2,11 +2,13 @@
 
 Formatting the output of the `echo` method use a special syntax that can be used to format your text; you can make your text bold, italic or underlined or even glow. Because it use special syntax you don't need to worry about [XSS Vulnerability](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
+Basic example:
+
 ```javascript
 term.echo('[[b;red;white]hello world]');
 ```
 
-This example will create a red bold text on a white background.
+This will create a red bold text on a white background.
 
 More about the [syntax of Terminal formatting in API reference](https://terminal.jcubic.pl/api_reference.php#echo).
 
@@ -150,3 +152,5 @@ $.terminal.new_formatter([/hello/g, '[[;red;]hello world]']);
 Note: one more limitation of formatters is that they are executed on strings between formatting so above formatter will not create infinite loop of replacement. With the exception of formatter like `$.terminal.nested_formatting` which is always added to the list when including the library.
 
 If you want to have formatters based on interpreters, like for instance, a *mysql* command that have *SQL* syntax and a *js* command to have *javascript* formatting etc... then you can create a stack of formatters (stack is the kind of the data structure [more on Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))). Example how to do that is in [example section on a web site](https://terminal.jcubic.pl/examples.php#syntax_highlight).
+
+if you want to see example of more advanced formatter you can check [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js) that add handy html like tags to color the text. It use stack data structure to handle nesting (like in html).
