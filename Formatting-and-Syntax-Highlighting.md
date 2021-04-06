@@ -1,6 +1,6 @@
 ### Formatting
 
-Formatting the output of the `echo` method use a special syntax that can be used to format your text; you can make your text bold, italic or underlined or even glow.
+Formatting the output of the `echo` method use a special syntax that can be used to format your text; you can make your text bold, italic or underlined or even glow. Because it use special syntax you don't need to worry about [XSS Vulnerability](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ```javascript
 term.echo('[[b;red;white]hello world]');
