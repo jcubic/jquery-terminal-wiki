@@ -103,7 +103,7 @@ If you want that your nested formatters inherit style example:
 
 `[[b;;]foo [[i;;]bar] baz]` and you want that bar needs to inherit bold style, then you should use this code to enable that:
 
-```
+```javascript
 $.terminal.nested_formatting.__inherit__ = true;
 ```
 
