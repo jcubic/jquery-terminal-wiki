@@ -5,10 +5,11 @@ The most important elements of the Web Terminal created with jQuery Terminal are
 
 ## Interpreter
 
-Interpreter is first argument of jQuery plugin invocation:
+The interpreter is the first argument of jQuery plugin invocation:
 
-
+```javascript
 $('body').terminal(<interpreter>, { <options> });
+```
 
 The interpreter can be created in few different ways, the first argument is overloaded
 and allow passing function, object (including nested object), string, or Array of
