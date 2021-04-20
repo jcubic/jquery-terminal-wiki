@@ -115,7 +115,19 @@ $('body').terminal({
     }
   },
   sudo: function(command, ...args) {
-     
+    switch(command) {
+      case 'ls':
+        list_directory(...args);
+        break;
+      case 'rm':
+        remove_file(...args);
+        break;
+      case 'mv':
+        move_file(...args);
+        break;
+      default:
+        this.error('Sudo what?');
+    }
   },
   rpc: "service.py"
 }, {
