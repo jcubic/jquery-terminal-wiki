@@ -1,15 +1,15 @@
-You can parse and process commands with options like in the *linux* command line or any other shell.
-If you're using a function as interpreter, you can parse the commands to split the command into arguments.
+You can parse and process commands with options like in the *Linux* command line or any other shell.
+If you're using a function as an interpreter, you can parse the commands to split the command into arguments.
 
 There are two pairs of functions:
 
-* split_arguments
-* parse_arguments
+* `$.terminal.split_arguments`
+* `$.terminal.parse_arguments`
 
 and
 
-* split_command
-* parse_command
+* `$.terminal.split_command`
+* `$.terminal.parse_command`
 
 x_command will create an object from a parsed string
 
@@ -21,7 +21,7 @@ x_command will create an object from a parsed string
 * args - the array of arguments parsed with x_arguments
 * rest - the rest of the text without name and space as is
 * command - the input string as is
-* args_quotes - array of strings with quote used ' or "
+* args_quotes - an array of strings with a quote used ' or "
 
 x_arguments functions will create an array from the arguments splitted on space. x_command functions use x_arguments functions to process the arguments array.
 
