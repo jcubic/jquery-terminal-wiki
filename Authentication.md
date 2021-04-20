@@ -46,6 +46,16 @@ allow using the terminal without login. Instead, you need to create a command th
 ```javascript
 $(function() {
     $('#terminal').terminal({
+        hello: function() {
+            // client side only validation if token exists
+            // to protect the app you should validate
+            // the token on the server
+            if (this.get_token()) {
+               this.echo('Welcome');
+            } else {
+               this.error("You need to login first");
+            }
+        },
         login: function() {
             if (this.get_token()) {
                 this.error("you're already logged in");
