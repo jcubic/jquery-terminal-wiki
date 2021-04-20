@@ -1,7 +1,7 @@
 The most important elements of the Web Terminal created with jQuery Terminal are:
 
-1. Interpreter
-2. Displaying the content on the terminal
+1. [Interpreter](#interpreter)
+2. [Displaying the content on the terminal](#displaying-the-content-on-the-terminal)
 
 ## Interpreter
 
