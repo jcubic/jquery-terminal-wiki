@@ -157,4 +157,12 @@ Details can be found in [[Tab-completion]] page.
 The main function for displaying the content of the terminal is the `echo` method it has a lot of advanced functions.
 
 * [[Formatting and Syntax Highlighting]]
+* [[Chinese and Japanese character support]]
 * [[Invoking Commands and terminal methods from Server]]
+
+**TODO:**
+* Drawing ASCII Table
+* Drawing ANSI Art
+* renderHandler
+  * react inside jQuery Terminal
+  * Canvas Demo
