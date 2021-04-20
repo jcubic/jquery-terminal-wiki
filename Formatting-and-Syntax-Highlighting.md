@@ -38,8 +38,8 @@ Images handing was added in version 2.8.0, with more updates in 2.9.0.
 If you want to define *syntax highlighting* for instance taken from *python* or *SQL*, there is the possibility to not have to specify this formatting on your own but use the [PrismJS library](https://prismjs.com/). This will also work while you type. To use *PrismJS*, you first need to include the files needed for the library:
 
 ```
-https://unpkg.com/prismjs/prism.js
-https://unpkg.com/prismjs/themes/prism.css
+https://cdn.jsdelivr.net/npm/prismjs/prism.js
+https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css
 ```
 
 by default *PrismJS* only includes the HTML, CSS, and JavaScript syntax. If you need others like *python* or *SQL*, you need to include one of the [component files](https://unpkg.com/prismjs/components/); they are also on *npm* and on [GitHub](https://github.com/PrismJS/prism).
@@ -47,7 +47,7 @@ by default *PrismJS* only includes the HTML, CSS, and JavaScript syntax. If you 
 After you have included the *PrismJS* files, you also need to include the jQuery Terminal Prism wrapper:
 
 ```
-https://unpkg.com/jquery.terminal/js/prism.js
+https://cdn.jsdelivr.net/npm/jquery.terminal/js/prism.js
 ```
 
 Finally, you can call the `syntax` function somewhere after the terminal and prismJS files have been "imported". It doesn't need to be in `$(function() {});`. To get python highlighting, as an example:
@@ -75,7 +75,7 @@ Explanation of the [ANSI ESCAPE codes can be found on Wikipedia](https://en.wiki
 To use ANSI formatting in jQuery Terminal, you only need to include one file:
 
 ```
-https://unpkg.com/jquery.terminal/js/unix_formatting.js
+https://cdn.jsdelivr.net/npm/jquery.terminal/js/unix_formatting.js
 ```
 
 The file also handles what's called overtyping (which is used, for example, in the output of the man command on Linux/Unix),  where you have text like this
