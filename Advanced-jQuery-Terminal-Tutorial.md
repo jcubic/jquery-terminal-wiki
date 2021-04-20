@@ -2,7 +2,7 @@
 2. [Displaying the content on the terminal](#displaying-the-content-on-the-terminal)
 3. [[Events]]
 4. [[Authentication]]
-5. [[Webpack & Babel]]
+5. [[Webpack and Babel]]
 6. [[Shortcuts]]
 
 ## Interpreter
