@@ -136,13 +136,13 @@ $('body').terminal({
 ```
 
 This example creates three commands
-* sudo that allows executing a command with arguments, variadic functions
-  require to add option checkArity that is set to true by default and don't allow to execute functions
+* `sudo` that allows executing a command with arguments, variadic functions
+  require to add option `checkArity` that is set to true by default and don't allow to execute functions
   with more than the required number of arguments. 
-* stack that creates simple nested command, when you type stack it will change the prompt to stack> and
-  allow executing two commands push and pop that is interface to stack data structure created from Array.
-* rpc command will change the prompt to rpc> and allow to execute commands that are provided by the given URL
-  here it expects that in the same directory as the HTML file there is service.py that is a server-side script
+* `stack` that creates simple nested command, when you type stack it will change the prompt to `stack>` and
+  allow executing two commands `push` and `pop` that is an interface to stack data structure created from Array.
+* `rpc` command will change the prompt to `rpc>` and allow to execute commands that are provided by the given URL
+  here it expects that in the same directory as the HTML file there is `service.py` that is a server-side script
   that is the implementation of JSON-RPC.
 
 
