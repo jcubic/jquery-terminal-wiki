@@ -164,3 +164,10 @@ Note: one more limitation of formatters is that they are executed on strings bet
 If you want to have formatters based on interpreters, like for instance, a *mysql* command that have *SQL* syntax and a *js* command to have *javascript* formatting, etc... then you can create a stack of formatters (stack is the kind of the data structure [more on Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))). An example of how to do that is in [example section on a website](https://terminal.jcubic.pl/examples.php#syntax_highlight).
 
 if you want to see an example of a more advanced formatter you can check [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js) that add handy HTML like tags to color the text. It uses a stack data structure to handle nesting (like in HTML).
+
+
+## TODO
+* `<big>`
+* `<link>`
+* `<img>`
+* formatted targets
