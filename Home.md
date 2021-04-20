@@ -1,2 +1,2 @@
 * [[Getting Started]]
-* [[Advanced-jQuery-Terminal-Tutorial]]
+* [[Advanced jQuery Terminal Tutorial]]
