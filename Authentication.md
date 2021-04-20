@@ -38,7 +38,7 @@ $(function() {
 ```
 and `auth.py` should read JSON as POST data validate that this is valid user and if so generate a token (any value) and save it in safe place (that can't be accessed from the web).
 
-Here we use fetch API to send POST request to the server in `auth.py` URI and whatever JSON it returns it will be used as a token, the server needs to return JSON string (texts "<generated token>") or null (false will also work). `auth.py` should read JSON as POST data validate that this is a valid user and if so generate a token (any value) and save it in safe place (that can't be accessed from the web).
+Here we use fetch API to send POST request to the server in `auth.py` URI and whatever JSON it returns it will be used as a token, the server needs to return JSON string (texts `"<generated token>"`) or null (false will also work). `auth.py` should read JSON as POST data validate that this is a valid user and if so generate a token (any value) and save it in safe place (that can't be accessed from the web).
 
 If you want to have a prompt like in one of the previous sections (different prompt for login in users and guests) then you can't use login option because this will not
 allow using the terminal without login. Instead, you need to create a command that will call login method.
