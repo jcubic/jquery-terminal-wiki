@@ -4,6 +4,7 @@
 4. [[Authentication]]
 5. [[Webpack and Babel]]
 6. [[Shortcuts]]
+7. [[Saving State]]
 
 ## Interpreter
 
