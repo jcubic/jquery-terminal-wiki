@@ -84,6 +84,31 @@ $(function() {
 });
 ```
 
+Here is alterative version using nested interpreter (`push` method) that you can exit from (with `exit` command or with `CTRL+D`):
+
+```javascript
+  $('body').terminal(function(command, term) {
+    var cmd = $.terminal.parse_command(command);
+    if (cmd.name === 'login') {
+      term.push({
+        hello: function() {
+          this.echo('hello there');
+        }
+      }, {
+        prompt: 'obi> ',
+        login: function(username, password) {
+          if (username === 'obi' && password === 'one') {
+            return Promise.resolve('TOKEN');
+          }
+          return Promise.reject();
+        }
+      });
+    } else {
+      this.error('Invalid Command.');
+    }
+  });
+```
+
 login method works the same as the login option. The callback is an old API that was not removed to not introduce breaking changes.
 
 > In every API that have callback you can return a promise.
