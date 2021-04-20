@@ -62,13 +62,15 @@ $('body').terminal(function(command) {
 
 when called with: `add 1 2 3 4 5` it will return `15`.
 
+More about parsing in [[Parsing commands]].
+
 ### String
 
-You can use string as interpreter (also in Array and Object) the string need to be a URL
+You can use string as an interpreter (also in Array and Object) the string need to be a URL
 that points to a valid JSON-RPC service. If the service provide `system.describe` (defined
 in [1.1 draft of JSON-RPC](https://www.jsonrpc.org/historical/json-rpc-1-1-wd.html))
 you can use auto-completion without any extra work. If you don't want to implement non-standard
-`system.describe`, you can provide a normal method (with the same name) that return
+`system.describe`, you can provide a normal method (with the same name) that returns
 standard JSON-RPC response, but then you will need to use the option that tells jQuery Terminal
 where he can find the definition of procedures that are provided by the JSON-RPC service.
 To do that you can use:
@@ -92,8 +94,8 @@ If you don't want to use auto-discovery you can use the option:
 ### Object
 
 The object can have functions that will be executed when a command with a specific name is
-invoked, it can be another object that creates nested interpreter (example MySQL command,
-that accept SQL commands) or it can be a string that creates nested interpreter
+invoked, it can be another object that creates a nested interpreter (for example MySQL command,
+that accept SQL commands) or it can be a string that creates a nested interpreter
 from JSON-RPC service.
 
 ```javascript
@@ -123,7 +125,7 @@ This example creates three commands
 * stack that creates simple nested command, when you type stack it will change the prompt to stack> and
   allow executing two commands push and pop that is interface to stack data structure created from Array.
 * rpc command will change the prompt to rpc> and allow to execute commands that are provided by the given URL
-  here it expects that in the same directory as the HTML file there is service.py that is server-side script
+  here it expects that in the same directory as the HTML file there is service.py that is a server-side script
   that is the implementation of JSON-RPC.
 
 
@@ -149,3 +151,10 @@ then you can use automatic completion by adding the option
 ```
 
 Details can be found in [[Tab-completion]] page.
+
+## Displaying the content on the terminal
+
+The main function for displaying the content of the terminal is the `echo` method it has a lot of advanced functions.
+
+* [[Formatting and Syntax Highlighting]]
+* [[Invoking Commands and terminal methods from Server]]
