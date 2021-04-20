@@ -5,6 +5,8 @@
 5. [[Webpack and Babel]]
 6. [[Shortcuts]]
 7. [[Saving State]]
+8. [[Mobile Web Terminal]]
+9. [[Extensions]]
 
 ## Interpreter
 
