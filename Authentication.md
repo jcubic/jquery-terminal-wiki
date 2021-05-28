@@ -112,3 +112,50 @@ Here is alterative version using nested interpreter (`push` method) that you can
 login method works the same as the login option. The callback is an old API that was not removed to not introduce breaking changes.
 
 > In every API that have callback you can return a promise.
+
+## Custom Login Function
+
+Bult-in login function test both username and password and give a single error that user or password is invalid.
+You can create your own login function where you first check if the user exists and if not show an error about a wrong user.
+Then you can check the user and password is valid and if not you can only show an error about a wrong password.
+
+```javascript
+var users = [
+    {
+        user: 'jon',
+        password: 'secret'
+    },
+    {
+        user: 'jane',
+        password: 'monty'
+    }
+];
+
+function valid_user(username) {
+    return users.find(user => user.user == username);
+}
+function valid_user_password(username, password) {
+    var user = users.find(user => user.user == username);
+    return user && user.password === password;
+}
+
+function login(term, interpreter, options) {
+    var history = term.history();
+    history.disable();
+    term.push(function(user) {
+        if (!valid_user(user)) {
+            term.pop().error('Invalid Username');
+        }
+        term.set_mask(true).push(function(pass) {
+            term.set_mask(false).pop().pop();
+            if (!valid_user_password(user, pass)) {
+                term.error('Invalid Password');
+            } else {
+                term.push(interpreter, $.extend(options, { prompt: user + '@~ ' }));
+            }
+        }, { prompt: 'password: ' });
+    }, { prompt: 'user: ' });
+}
+```
+
+> Note that if you want your application to be secured you should never save user and password in JS. This is just an example to simplify the code. In a real application user and password should be saved on the server and you should use AJAX to send a request to the server that will check if the user is valid and then if the user/password is valid.
