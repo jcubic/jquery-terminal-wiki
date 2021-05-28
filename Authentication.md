@@ -159,3 +159,5 @@ function login(term, interpreter, options) {
 ```
 
 > Note that if you want your application to be secured you should never save user and password in JS. This is just an example to simplify the code. In a real application user and password should be saved on the server and you should use AJAX to send a request to the server that will check if the user is valid and then if the user/password is valid.
+
+This code doesn't have any token or login name that is used by the default in jQuery Terminal. So if you want to use token-based authentication you can get the token from the server and save it with `term::set_token`. and use `term::get_token` to see if the token is set and validate it on the server before executing the commands.
