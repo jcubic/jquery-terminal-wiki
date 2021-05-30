@@ -283,6 +283,8 @@ Each time you press `<Enter>`, the command is saved in the history (you can disa
 
 You can move through history commands using the up and down arrows.
 
+If you have more than one terminal on the page. Or more than one application with the terminal on the same origin (protocol+domain+port) you can share the command line history or make each terminal have a different history. To make terminals share history you just need to give them the same `name` (using an option) or do nothing because by default each terminal will have the same name. But if you want each terminal to have different history you just give them different names.
+
 You can filter which commands should go to history and which don't using the `historyFilter` option. It can be regular expression that, if match,  will not add the command to history (you can use regex /^\s/ to not store commands that begin with space like in bash). You can also specify a function where you can use some logic and return true or false.
 
 You can also limit the number of commands in history using the `historySize` option; if you set it to `false`, it will not restrict the size (but it may fill up your **localStorage** or the **cookies**).
