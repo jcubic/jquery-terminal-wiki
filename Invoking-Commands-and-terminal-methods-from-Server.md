@@ -11,7 +11,7 @@ term.echo('[[ foo 1 2 /bar/ ]]');
 ```
 and foo command will be executed where `a` is number 1, `b` is number 2 and `c` is a regular expression.
 
-this is the same as `term.exec('foo 1 2 /bar/');` but the difference is that you can just return the string `"[[ foo 1 2 3 ]]"` from JSON-RPC procedure. For you this you need to create interpreter that will have both JSON-RCP and object:
+this is the same as `term.exec('foo 1 2 /bar/');` but the difference is that you can just return the string `"[[ foo 1 2 3 ]]"` from JSON-RPC procedure. For you this you need to create interpreter that will have both JSON-RPC and object:
 
 ```javascript
 var term = $('body').terminal(["service.php", {
