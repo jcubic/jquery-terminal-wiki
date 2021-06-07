@@ -1,6 +1,7 @@
-The echo command is quite powerful. With it, you can invoke the different commands from the server.
+The echo command is quite powerful. With it, you can invoke the different commands from the server. The mechanism is called **extended commands**.
 
 You can call code like this:
+
 ```javascript
 var term = $('body').terminal({
     foo: function(a, b, c) {
@@ -9,9 +10,10 @@ var term = $('body').terminal({
 });
 term.echo('[[ foo 1 2 /bar/ ]]');
 ```
+
 and foo command will be executed where `a` is number 1, `b` is number 2 and `c` is a regular expression.
 
-this is the same as `term.exec('foo 1 2 /bar/');` but the difference is that you can just return the string `"[[ foo 1 2 3 ]]"` from JSON-RPC procedure. For you this you need to create interpreter that will have both JSON-RPC and object:
+this is the same as `term.exec('foo 1 2 /bar/');`, but the difference is that you can return the string `"[[ foo 1 2 3 ]]"` from JSON-RPC procedure. For this to work you'll need to create an interpreter that will have both JSON-RPC and object (or function).
 
 ```javascript
 var term = $('body').terminal(["service.php", {
@@ -25,25 +27,28 @@ This will create an interpreter with both JSON-RPC service in PHP file and custo
 
 With this setup, you can create a procedure `"hello"` in JSON-RPC service that will return `"[[ foo 1 2 3 ]]"` and when you type "hello" it will run `console.log({a, b, c});`.
 
-You can also return [[ exit ]] from JSON-RPC and when that procedure will be executed it will log out from the interpreter if you have a login or call pop if you're in the nested interpreter. There is also one feature that's disabled by default for security reasons (see 
+You can also return `"[[ exit ]]"` from JSON-RPC and when that procedure will be executed (you type the proper command) it will log out from the interpreter if you have a login or call pop if you're in the nested interpreter. There is also one feature that's disabled by default for security reasons (see 
 [security section in API reference](https://terminal.jcubic.pl/api_reference.php#security)). To execute terminal method, like for instance shortcut CTRL+R from the server, you
 can use this syntax:
 
 ```
 [[ terminal::invoke_key("CTRL+R") ]]
 ```
-
-the same goes to cmd instance methods, you can insert text and change cursor position to the beginning of the line, from server with this string:
+You can execute any method on the jQuery Terminal instance. The same goes to cmd instance methods, you can insert text and change cursor position to the beginning of the line, from server with this string:
 
 `[[ cmd::set("hello") ]][[ cmd::position(0) ]]`
 
 To enable this feature you need to set `invokeMethods: true` option.
 
-The only limitations are that you can't return value from this method, you can't return object and invoke a method on it (so you can't disable history but this may change). The other limitation is that arguments need to be valid JSON so this will not work:
+The only limitations are that you can't return value from this method, you can't return an object and invoke a method on it (so you can't disable history but this may change). The other limitation is that arguments need to be valid JSON so this will not work:
 
 `[[ cmd::set('hello') ]]`
 
 ## Custom controller
+
+With this feature you can write any missing function that will control the terminal and if you JSON-RPC service you can give your server a way to control the terminal in any way. Adding powerful behavior.
+
+Example:
 
 ```javascript
 $('body').terminal([
