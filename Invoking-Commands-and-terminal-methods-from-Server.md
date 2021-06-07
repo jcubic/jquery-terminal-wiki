@@ -1,6 +1,31 @@
 The echo command is quite powerful. With it, you can invoke the different commands from the server.
 
-In JSON-RPC you can return the string `"[[ exit ]]"` and it will log out from the interpreter if you have a login or call pop if you're in the nested interpreter. There is also one feature that's disabled by default for security reasons (see 
+You can call code like this:
+```javascript
+var term = $('body').terminal({
+    foo: function(a, b, c) {
+        console.log({a, b, c});
+    }
+});
+term.echo('[[ foo 1 2 /bar/ ]]');
+```
+and foo command will be executed where `a` is number 1, `b` is number 2 and `c` is a regular expression.
+
+this is the same as `term.exec('foo 1 2 /bar/');` but the difference is that you can just return the string `"[[ foo 1 2 3 ]]"` from JSON-RPC procedure. For you this you need to create interpreter that will have both JSON-RCP and object:
+
+```javascript
+var term = $('body').terminal(["service.php", {
+    foo: function(a, b, c) {
+        console.log({a, b, c});
+    }
+}]);
+```
+
+This will create an interpreter with both JSON-RPC service in PHP file and custom object.
+
+With this setup, you can create a procedure `"hello"` in JSON-RPC service that will return `"[[ foo 1 2 3 ]]"` and when you type "hello" it will run `console.log({a, b, c});`.
+
+You can also return [[ exit ]] from JSON-RPC and when that procedure will be executed it will log out from the interpreter if you have a login or call pop if you're in the nested interpreter. There is also one feature that's disabled by default for security reasons (see 
 [security section in API reference](https://terminal.jcubic.pl/api_reference.php#security)). To execute terminal method, like for instance shortcut CTRL+R from the server, you
 can use this syntax:
 
