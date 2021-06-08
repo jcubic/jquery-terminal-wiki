@@ -62,3 +62,24 @@ $('body').terminal([
 ```
 
 In the above example terminal create two interpreters two objects one from JSON-RPC service and one object with one command `size` (more about interpreters in [[Advanced jQuery Terminal Tutorial]]). With this setup, the server can return the string `[[ size 1.5 ]]` and change the size of the terminal. You can write any method you like and invoke it from the server.
+
+### Animation from server
+
+Having this feature at your disposal you can make the server do whatever you want. Just another example is an animation that is sent from the server.
+
+```javascript
+$('body').terminal([
+  "service.py", 
+  {
+    typing: function(message, delay, continuation = null) {
+      this.typing('echo', message, delay).then(() => {
+        if (continuation !== null) {
+          this.exec(continuation, true);
+        }
+      });
+    }
+  }
+], { checkArity: false });
+```
+
+with this code, the server (JSON-RPC) can return the string `"[[ typing 'hello' 200 ]]"` to create typing animation of "hello" and you can also you can sue the last argument to command to execute the next command. For instance, you can add the command `"ask"` that you will need to write next to typing that will ask the user for his name and save it in localStorage for retrival.
