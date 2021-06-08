@@ -82,4 +82,4 @@ $('body').terminal([
 ], { checkArity: false });
 ```
 
-with this code, the server (JSON-RPC) can return the string `"[[ typing 'hello' 200 ]]"` to create typing animation of "hello" and you can also you can sue the last argument to command to execute the next command. For instance, you can add the command `"ask"` that you will need to write next to typing that will ask the user for his name and save it in localStorage for retrival.
+with this code, the server (JSON-RPC) can return the string `"[[ typing 'hello' 200 ]]"` to create typing animation of "hello" and you can also you can sue the last argument to command to execute the next command. For instance, you can add the command `"ask"` that you will need to write next to typing that will ask the user for his name and save it in localStorage for the retrival. To do that just return `"[[ typing 'hello' 200 "ask" ]]"` from the server.
