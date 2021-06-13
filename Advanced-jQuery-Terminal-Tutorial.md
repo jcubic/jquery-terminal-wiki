@@ -178,8 +178,8 @@ The main function for displaying the content of the terminal is the `echo` metho
 * [[Invoking Commands and terminal methods from Server]]
 
 **TODO:**
-* Drawing ASCII Table
+* Drawing ASCII Table 
 * Drawing ANSI Art
 * renderHandler
-  * react inside jQuery Terminal
-  * Canvas Demo
+  * React inside jQuery Terminal & Canvas, see [Codepen demo](https://codepen.io/jcubic/pen/mddwRzE)
+  * PoC of [Animation API using Canvas](https://codepen.io/jcubic/pen/VweodLO?editors=0010) (Canvas is used for performance)
