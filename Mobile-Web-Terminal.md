@@ -1,6 +1,6 @@
 jQuery Terminal works out of the box on mobile. Be sure to not use examples that may hang around somewhere that use onBlur event function and return false. This will prevent the keyboard on mobile from popup because it will keep the terminal in focus and on mobile the terminal has to be disabled on init so you can activate it with a finger tap.
 
-### Responsive size:
+### Responsive font size:
 
 You can use this responsive CSS to make the size of the terminal change to make to fit into the screen:
 ```css
@@ -28,6 +28,3 @@ term.echo(function() {
 You can return a string, an array of strings, or a Promise of them.
 
 You can see how this works in [Pipe demo](https://codepen.io/jcubic/pen/vYLvvXx?editors=0110).
-
-
-
