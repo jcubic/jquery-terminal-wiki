@@ -174,7 +174,7 @@ Details can be found in [[Tab-completion]] page.
 The main function for displaying the content of the terminal is the `echo` method. It has a lot of advanced functions.
 
 * Display of Columns if you echo an array of strings.
-* Echo of Promise or Function that can react to the size of the terminal.
+* Echo of Promise or [[Function that can react to the size of the terminal|Mobile-Web-Terminal#responsive-text]].
 * [[Formatting and Syntax Highlighting]].
 * [[Chinese and Japanese character support]].
 * [[Invoking Commands and terminal methods from Server]].
