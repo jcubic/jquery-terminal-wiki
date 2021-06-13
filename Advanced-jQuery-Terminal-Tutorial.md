@@ -171,15 +171,19 @@ Details can be found in [[Tab-completion]] page.
 
 ## Displaying the content on the terminal
 
-The main function for displaying the content of the terminal is the `echo` method it has a lot of advanced functions.
+The main function for displaying the content of the terminal is the `echo` method. It has a lot of advanced functions.
 
-* [[Formatting and Syntax Highlighting]]
-* [[Chinese and Japanese character support]]
-* [[Invoking Commands and terminal methods from Server]]
+* Display of Columns if you echo an array of strings.
+* Echo of Promise or Function that can react to the size of the terminal.
+* [[Formatting and Syntax Highlighting]].
+* [[Chinese and Japanese character support]].
+* [[Invoking Commands and terminal methods from Server]].
 
 **TODO:**
-* Drawing ASCII Table 
-* Drawing ANSI Art
+* Drawing ASCII Table
+* Using ASCII libraries [awesome-ascii](https://github.com/jcubic/awesome-ascii)
+* Using Web Worker for ANSI ART rendering
+* [Drawing ANSI Art](https://codepen.io/jcubic/pen/pxdxmN?editors=0010)
 * renderHandler
   * React inside jQuery Terminal & Canvas, see [Codepen demo](https://codepen.io/jcubic/pen/mddwRzE)
   * PoC of [Animation API using Canvas](https://codepen.io/jcubic/pen/VweodLO?editors=0010) (Canvas is used for performance)
