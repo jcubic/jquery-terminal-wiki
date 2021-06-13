@@ -18,28 +18,28 @@
 
 ### Introduction
 
-[jQuery Terminal is a **JavaScript library**](https://terminal.jcubic.pl/) that requires **jQuery** to work properly. To create an app using jQuery Terminal, first you need to create an html page, and then include jQuery and both the JavaScript and CSS files from jQuery Terminal. You can also use **webpack** or other *bundlers* but we will not discuss this here.
-In this tutorial, you will learn all the basics needed to create your own Terminal in a webpage and also the explanations for all the features.
+[jQuery Terminal is a **JavaScript library**](https://terminal.jcubic.pl/) that requires **jQuery** to work properly. To create an app using jQuery Terminal, first, you need to create an HTML page, and then include jQuery and both the JavaScript and CSS files from jQuery Terminal. You can also use **webpack** or other *bundlers* but we will not discuss this here.
+In this tutorial, you will learn all the basics needed to create your own Terminal on a webpage and also the explanations for all the features.
 
 You can also read this article: [How to create interactive terminal like website?](https://itnext.io/how-to-create-interactive-terminal-like-website-888bb0972288).
 
 ### Unpkg CDN
 
-The best way to get jQuery Terminal is from [unpkg.com](https://unpkg.com/#/) that serves files from [npm repository](https://npmjs.com). With it, you don't need to host the files yourself. It's useful if you want to create a quick proof of concept or if you want to use one of demo services like Codepen, JSFiddle.
+The best way to get jQuery Terminal is from [unpkg.com](https://unpkg.com/#/) that serves files from [npm repository](https://npmjs.com). With it, you don't need to host the files yourself. It's useful if you want to create a quick proof of concept or if you want to use one of the demo services like Codepen, JSFiddle.
 
-With unpkg.com CDN you can specify that you always want the latest version but not if they have breaking changes. For instance if the latest version is 1.22.1, you can specify that you want the version 1.22 and all the bug fixes using url:
+With unpkg.com CDN you can specify that you always want the latest version but not if they have breaking changes. For instance, if the latest version is 1.22.1, you can specify that you want version 1.22 and all the bug fixes using URL:
 
 ```
 https://unpkg.com/jquery.terminal@1.22.x
 ```
 
-This URL will redirect to file /js/jquery.terminal.js with the proper version number. If you want to have all the bug fixes for version 1 and all the features, you can use 1.x.x instead of 1.22.x. And if you want minified version of the library you can specify this URL:
+This URL will redirect to file /js/jquery.terminal.js with the proper version number. If you want to have all the bug fixes for version 1 and all the features, you can use 1.x.x instead of 1.22.x. And if you want a minified version of the library you can specify this URL:
 
 ```
 https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js
 ```
 
-It's the same principle for the css file, you can use an URL like:
+It's the same principle for the CSS file, you can use an URL like:
 
 ```
 https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css
@@ -62,7 +62,7 @@ A basic HTML page using unpkg.com CDN will look like this
 </html>
 ```
 
-Of course, you can use local files instead by downloading them directly, by installing with npm or bower or even by cloning the git repository.
+Of course, you can use local files instead by downloading them directly, by installing with npm or bower, or even by cloning the git repository.
 
 ### Initialization
 
@@ -84,7 +84,7 @@ or
 <script src="script.js"></script>
 ```
 
-inside `<head>`, then you need to wrap your code inside jQuery Ready function that will be invoked when DOM (Document Object Model - html representation in memory) will be
+inside `<head>`, then you need to wrap your code inside the jQuery Ready function that will be invoked when DOM (Document Object Model - html representation in memory) will be
 ready so jQuery will find `#terminal` or `body`. to do that you need this code
 
 ```javascript
@@ -108,7 +108,7 @@ $(function() {
 
 You know how to invoke the plugin; you need now to specify the interpreter (the first argument of the plugin) and define some options; you probably want at least to remove default greetings, which is discussed later in this document.
 
-There are 3 types of interpreters: function, object and strings.
+There are 3 types of interpreters: function, object, and strings.
 
 * **function** is created when you pass the interpreter as a function
 
@@ -138,21 +138,21 @@ $(function() {
 });
 ```
 
-This will create a terminal with three commands: open, close and sub. If you type `open something` the open function will be invoked and value parameter will equal to something.
+This will create a terminal with three commands: open, close, and sub. If you type `open something` the open function will be invoked and the value parameter will equal something.
 
-Terminal will parse all your commands, convert number like strings into numbers and Regular Expressions into RegExp objects. You can disable this behavior using
+The terminal will parse all your commands, convert number-like strings into numbers and Regular Expressions into RegExp objects. You can disable this behavior using
 [processArguments](https://terminal.jcubic.pl/api_reference.php#processarguments) option. This option can be a *boolean* and you can set it to `false` or it can be a function where you
 can process the value in your own way (in this function for instance you can use JSON.parse to get objects out of strings).
 
-By default, if you have an object like this and you type `close foo`, terminal will throw an error because you didn't specify a second argument.
+By default, if you have an object like this and you type `close foo`, the terminal will throw an error because you didn't specify a second argument.
 
 To prevent this behavior you can use the option [checkArity](https://terminal.jcubic.pl/api_reference.php#checkarity) set to `false`.
 
 In this example, you have `sub` which is not a function but another object; when you type `sub` in the terminal the prompt will change to `sub> ` and you will be able to type `get`, but not `open` and `close`. They will not work.
 
-This is called a nested interpreter, which can also be created when you have a function as interpreter and by using the [push method](https://terminal.jcubic.pl/api_reference.php#push).
+This is called a nested interpreter, which can also be created when you have a function as an interpreter and by using the [push method](https://terminal.jcubic.pl/api_reference.php#push).
 
-*  the third option is to use a string which points to a [JSON-RPC service](https://en.wikipedia.org/wiki/JSON-RPC) URL; if the service is on the same domain, you can use it as is, but if it's on different domain or port then you need to use a mechanism called [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
+*  the third option is to use a string that points to a [JSON-RPC service](https://en.wikipedia.org/wiki/JSON-RPC) URL; if the service is on the same domain, you can use it as is, but if it's on a different domain or port then you need to use a mechanism called [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
 
 ```javascript
 $(function() {
@@ -162,11 +162,11 @@ $(function() {
 
 * There is also one more type of interpreter which is an array that can combine all the above types but with some limitations:
 
-You can have only one function that is executed when no other command is found. You can also have one single JSON-RPC service without system.describe (or if you turn it off using [describe option](https://terminal.jcubic.pl/api_reference.php#describe)) which was part of the historical 1.1 version of JSON-RPC specification.
+You can have only one function that is executed when no other command is found. You can also have one single JSON-RPC service without `system.describe` (or if you turn it off using [describe option](https://terminal.jcubic.pl/api_reference.php#describe)) which was part of the historical 1.1 version of JSON-RPC specification.
 
-It's a special method that should return different object then normal JSON-RPC, the spec for the object is in [system.describe section in API reference page](https://terminal.jcubic.pl/api_reference.php#system.describe). JSON-RPC is converted to simple function while JSON-RPC with system.describe is converted to object.
+It's a special method that should return a different object than normal JSON-RPC, the spec for the object is in [system.describe section in API reference page](https://terminal.jcubic.pl/api_reference.php#system.describe). JSON-RPC is converted to a simple function while JSON-RPC with `system.describe` is converted to object.
 
-If you want to have automatic completion for JSON-RPC and only want normal JSON-RPC methods you can specify option [describe](https://terminal.jcubic.pl/api_reference.php#describe) as a string with dot separated values that point to property procs from the spec, which should be an array of objects with names and params. (`describe: "result"` will work if proc array is normal JSON-RPC response).
+If you want to have automatic completion for JSON-RPC and only want normal JSON-RPC methods you can specify option [describe](https://terminal.jcubic.pl/api_reference.php#describe) as a string with dot-separated values that point to property procs from the spec, which should be an array of objects with names and params. (`describe: "result"` will work if proc array is normal JSON-RPC response).
 
 Here is how the array should look like:
 
@@ -195,7 +195,7 @@ $(function() {
 
 ### Accessing Terminal Object
 
-Terminal object have useful methods that you can invoke; the whole list of methods is in the [API documentation](https://terminal.jcubic.pl/api_reference.php). To access this object, which is a standard jQuery object with additional methods, you can use:
+Terminal objects have useful methods that you can invoke; the whole list of methods is in the [API documentation](https://terminal.jcubic.pl/api_reference.php). To access this object, which is a standard jQuery object with additional methods, you can use:
 
 * the object value returned by the plugin:
 
@@ -213,7 +213,7 @@ $('#terminal').terminal(function(command) {
 });
 ```
 
-* the third option is to specify the Terminal object as last parameter of some functions (it should be in all of them). It is a legacy feature to not break the API.
+* the third option is to specify the Terminal object as the last parameter of some functions (it should be in all of them). It is a legacy feature to not break the API.
 
 ```javascript
 $('#terminal').terminal(function(command, term) {
@@ -225,11 +225,11 @@ This is useful, for example, when you use ES5 and `setTimeout` and want to call 
 
 ### What can you echo?
 
-The `echo` method of the terminal instance it the most common function that you will use with the terminal, is quite versatile; you can use `echo` to print stuff on the terminal, you can call it with the following:
-* string
-* array of strings
-* any other value that can have toString method (so also numbers or boolean that are boxed in Number object or any custom object that have toString method).
-* Promise that resolve to any of the above
+The `echo` method of the terminal instance is the most common function that you will use with the terminal, is quite versatile; you can use `echo` to print stuff on the terminal, you can call it with the following:
+* String
+* Array of strings (it will print the array as columns)
+* Any other value that can have toString method (so also numbers or boolean that are boxed in Number object or any custom object that have toString method).
+* Promise that resolves to any of the above
 
 A limitation is that you can't call `echo` with an array of other values, only an array of strings. And JavaScript objects are printed as `[object Object]` (because this what's returned by the toString method), but this may change and new printing objects may be introduced in the future.
 
@@ -240,16 +240,16 @@ var div = $('<p>Hello <strong>World</strong></p>')
 term.echo(div);
 ```
 
-You can also echo any html element like canvas or video. And with new API in 2.9.0 you can echo anything if you add renderHandler. (TODO add link to API or create Wiki Page).
+You can also echo any HTML element like canvas or video. And with the new API in 2.9.0 you can echo anything if you add `renderHandler`. (TODO add a link to API or create Wiki Page, for now, you can read example at [this Codepen demo](https://codepen.io/jcubic/pen/mddwRzE)). 
 
-Check also [[Formatting and Syntax Highlighting]] for details about internal syntax of echo colors, basic styles, images and links.
+Check also [[Formatting and Syntax Highlighting]] for details about the internal syntax of echo colors, basic styles, images, and links.
 
 ### Greetings
 
-The second argument to the terminal plugin is an object where you can put your options. The "greetings" is one of them. It is the first text that is echoed into terminal.
+The second argument to the terminal plugin is an object where you can put your options. The "greetings" is one of them. It is the first text that is echoed into the terminal.
 
 You also can use `term.echo` to achieve the same effect but to get the same behavior as with greetings, you will
-need to put it in the `onInit` event, because greetings is shown after login. More on `login` and `onInit` in later sections.
+need to put it in the `onInit` event because greetings are shown after login. More on `login` and `onInit` in later sections.
 
 ```javascript
 $(function() {
@@ -271,7 +271,7 @@ $(function() {
 });
 ```
 
-You can use callback to call greetings in any time (e.g. as response to server call).
+You can use a callback to call greetings at any time (e.g. as a response to server call).
 
 NOTE: if you want to create an ASCII logo as greetings, you will need to escape special characters. If you create string with double quotes "", you need to escape double quote `"` and slash `\` with `\"` and `\\`. The same with strings with ``` ` ``` and `'`, you will need to escape those with slashes. You can also use library filget.js that render ASCII where you don't need to worry about escaping. Here is [Figlet.js Demo](https://codepen.io/jcubic/pen/VwvEvmN?editors=0010).
 
@@ -285,23 +285,23 @@ You can move through history commands using the up and down arrows.
 
 If you have more than one terminal on the page. Or more than one application with the terminal on the same origin (protocol+domain+port) you can share the command line history or make each terminal have a different history. To make terminals share history you just need to give them the same `name` (using an option) or do nothing because by default each terminal will have the same name. But if you want each terminal to have different history you just give them different names.
 
-You can filter which commands should go to history and which don't using the `historyFilter` option. It can be regular expression that, if match,  will not add the command to history (you can use regex /^\s/ to not store commands that begin with space like in bash). You can also specify a function where you can use some logic and return true or false.
+You can filter which commands should go to history and which don't use the `historyFilter` option. It can be a regular expression that, if match,  will not add the command to history (you can use regex /^\s/ to not store commands that begin with space like in bash). You can also specify a function where you can use some logic and return true or false.
 
 You can also limit the number of commands in history using the `historySize` option; if you set it to `false`, it will not restrict the size (but it may fill up your **localStorage** or the **cookies**).
 
-If you want the history to be persist only during the current session, you can use *in memory* history, instead of localStorage or cookies, by using the memory option set to true.
+If you want the history to persist only during the current session, you can use *in memory* history, instead of localStorage or cookies, by using the memory option set to true.
 
 But this will make all the data actually saved to memory (the same will happen with all data required by terminal like authentication token or interpreter names).
 
 ### Prompt
 
-The prompt is the string in beginning of the command line, you can specify the prompt using:
+The prompt is the string at the beginning of the command line, you can specify the prompt using:
 * prompt option
-* if you have nested interpreter created from nested object
-* if you use push to create new interpreter
+* if you have a nested interpreter created from a nested object
+* if you use push to create a new interpreter
 * if call term.set_prompt method
 
-the prompt can be string (it can have formatting) or function with single callback as argument that should be called with new prompt.
+the prompt can be a string (it can have formatting) or function with a single callback as an argument that should be called with a new prompt.
 
 ```javascript
 $(function() {
@@ -319,7 +319,7 @@ term.set_prompt(function(set_prompt) {
 });
 ```
 
-this will display different prompt to login in users and normal users, about authentication later.
+this will display different prompts to login in to users and normal users, about authentication later.
 
 As with any terminal function, you can also return promise from prompt function:
 
@@ -353,13 +353,13 @@ $('#terminal').terminal({
 });
 ```
 
-This will change the prompt to last name: and wait until user press enter, then it will resolve the promise, so you will see text on thee screen with
+This will change the prompt to last name: and wait until the user press enter, then it will resolve the promise, so you will see text on the screen with
 your name.
 
-Unfortunately you can't return the promise and in then return the string, because when you return a promise terminal will be paused, so you will not
+Unfortunately, you can't return the promise and then return the string, because when you return a promise terminal will be paused, so you will not
 see last name: prompt.
 
-Other option to read text from user is to use nested interpreter using push where you can have logic and ask for more then one thing.
+Another option to read text from users is to use a nested interpreter using push where you can have logic and ask for more than one thing.
 This is the code that will work the sam as read:
 
 ```javascript
@@ -376,14 +376,14 @@ $('#terminal').terminal({
 });
 ```
 
-But there are differences, by default read will disable history with push you can have history if you want but you still can disable it using
+But there are differences, by default read will disable history with push you can have a history if you want but you still can disable it using
 history `this.cmd().history().disable();` cmd is another plugin that is used internally but you can also use it on your own, it have simplified API.
-Here is [demo if simple terminal created using cmd plugin](https://codepen.io/jcubic/pen/XaoqGp). The other difference is, that read will invoke callback and resolve promise with empty last name if user press enter (and don't type anything), here it will only work if last_name is not empty.
+Here is [demo if simple terminal created using cmd plugin](https://codepen.io/jcubic/pen/XaoqGp). The other difference is, that the read will invoke callback and resolve promise with empty last name if the user press enter (and doesn't type anything), here it will only work if last_name is not empty.
 
 ### Masking password
 
-If you want to read password from the user you can use method set mask. It can be any string and each character you type will be replaced with this
-character, you can also use empty string to have password like in some unix commands like mysql.
+If you want to read the password from the user you can use the method set mask. It can be any string and each character you type will be replaced with this
+character, you can also use an empty string to have a password like in some Unix commands like `mysql`.
 
 ```javascript
 $('#terminal').terminal(function() {
@@ -391,7 +391,7 @@ $('#terminal').terminal(function() {
 });
 ```
 
-this will set mask to `-` character if you use true it will us asterisk.
+this will set the mask to `-` character if you use true it will us asterisk.
 
 ### Key Shortcuts
 
@@ -425,20 +425,20 @@ $(function() {
 });
 ```
 
-NOTE: this is just example of ENTER to have this behavior it's better to create prompt as function.
+NOTE: this is just an example of `ENTER` to have this behavior it's better to create a prompt as a function.
 
-this will change the prompt with counter for each enter.
+this will change the prompt with a counter for each enter key.
 
-The order of mnemonics look like this CTRL+META+SHIFT+ALT and at the beginning is special modifier HOLD. The shortcut will be invoked when you hold the key.
+The order of mnemonics looks like this CTRL+META+SHIFT+ALT and at the beginning is special modifier HOLD. The shortcut will be invoked when you hold the key.
 
 ### Asynchronous Commands
 
-If you have Async commands, which mean commands that execute later in time you should pause the terminal and resume it, after you've done processing. This will ensure
+If you have Async commands, which mean commands that execute later in time you should pause the terminal and resume it after you've done processing. This will ensure
 that your command will be invoked properly (mostly because of one feature which is invoking commands from URL hash or using exec method, discussed later in this document).
-If you don't care about order of commands you don't need to pause the terminal.
+If you don't care about the order of commands you don't need to pause the terminal.
 
-To pause the terminal and don't accept input from user, you can use `pause()` method and to resume the state you can use `resume()` method. You can also return a promise
-from interpreter, but the resolved value will be printed on terminal, to avoid this you can resolve to undefined (or add empty then if you don't use Promise constructor).
+To pause the terminal and don't accept input from a user, you can use `pause()` method and to resume the state you can use `resume()` method. You can also return a promise
+from the interpreter, but the resolved value will be printed on the terminal, to avoid this you can resolve to undefined (or add empty then if you don't use Promise constructor).
 
 ```javascript
 $('#terminal').terminal(function(command, term) {
@@ -510,7 +510,7 @@ If you don't want that `> close` to be echoed (by default exec act like if you t
 ```javascript
 term.exec('close', true);
 ```
-You can also put array in exec:
+You can also put the array in exec:
 ```javascript
 term.exec([
    'git clone https://github.com/jcubic/jquery.terminal.git',
@@ -519,38 +519,38 @@ term.exec([
 ]);
 ```
 
-and it will invoke commands in order, so if you have async commands it's important to have pause/resume or to returning promises from interpreter.
+and it will invoke commands in order, so if you have async commands it's important to have pause/resume or to returning promises from the interpreter.
 
-Second type of exec, is invoking commands using url, if you saved some commands in url hash and if you refresh the browser, all the commands will be
-executed in order the same as exec with array. To see this in action check [404 error page](https://terminal.jcubic.pl/404) and type: `record start` and `wikipedia terminal emulator`, it will create URL hash that store you commands and after you refresh it will execute your second command. With this you can save whole session but be careful because URL have limited number of characters. You can write something and share the link. One of the examples on the website show [this url](https://tinyurl.com/ybbydgtf). That prints definition of Hacker from [Jargon File](https://en.wikipedia.org/wiki/Jargon_File). See [[Saving State]] to check how to enable saving commands in hash.
+The second type of exec is invoking commands using URL, if you saved some commands in URL hash and if you refresh the browser, all the commands will be
+executed in order the same as exec with an array. To see this in action check [404 error page](https://terminal.jcubic.pl/404) and type: `record start` and `wikipedia terminal emulator`, it will create a URL hash that store your commands, and after you refresh it will execute your second command. With this, you can save the whole session but be careful because URLs have a limited number of characters. You can write something and share the link. One of the examples on the website show [this url](https://tinyurl.com/ybbydgtf). That prints the definitions from Hacker (also known as [Jargon File](https://en.wikipedia.org/wiki/Jargon_File)). See [[Saving State]] to check how to enable saving commands in a hash.
 
-Last type pf exec, is invoking terminal shortcuts, you can do that with term.invoke_key method. 
+The last type of exec is invoking terminal shortcuts, you can do that with `term.invoke_key()` method. 
 ```javascript
 term.invoke_key("CTRL+R");
 ```
 
-this will invoke control + R key which by default is bind to [reverse search](/jcubic/jquery.terminal/wiki/Reverse-history-search). This will invoke any shortcut added by keymap option as well as
+this will invoke control + R key which by default is bind to [reverse search](/jcubic/jquery.terminal/wiki/Reverse-history-search). This will invoke any shortcut added by the keymap option as well as
 build in keymap options.
 
-You can also execute commands from server see [[Invoking-Commands-and-terminal-methods-from-Server]].
+You can also execute commands from the server see [[Invoking-Commands-and-terminal-methods-from-Server]].
 
 ### Updating lines
 
-You can also update the lines that gets echo to the terminal using update method.
+You can also update the lines that get echo to the terminal using the update method.
 
 ```javascript
 term.update(0, "hello world")
 ```
 
-this will replace the greetings, you can also put negative values into first argument. To update last line you can use:
+this will replace the greetings, you can also put negative values into the first argument. To update the last line you can use:
 
 ```javascript
 term.echo("hello");
 term.update(-1, "hello world");
 ```
 
-there is also function that return index of last command which is term.last_index. This function is better if you need to update last line
-and you know that it's last so you can use last_index and you need to call update later when there are already some text added after.
+there is also a function that returns an index of the last command which is `term.last_index`. This function is better if you need to update the last line
+and you know that it's last so you can use last_index and you need to call update later when there is already some text added after.
 
 ```javascript
 term.update(term.last_index(), "hello")
@@ -559,3 +559,6 @@ term.update(term.last_index(), "hello")
 this will be the same as -1.
 
 If you want to remove last line you can use `term.remove_line(-1)` which is just alias for `term.update(-1, null);`
+
+
+You can Read about more advanced stuff in [[Advanced jQuery Terminal Tutorial]].
