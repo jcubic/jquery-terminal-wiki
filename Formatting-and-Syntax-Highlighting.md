@@ -22,7 +22,6 @@ To render links you can just echo URL or using formatting syntax:
 term.echo('[[!;;;;https://github.com/jcubic/jquery.terminal]visit repo]');
 ```
 
-
 ### Images
 
 To render images you can use the same formatting syntax using `@` character as the first style option in brackets:
@@ -84,6 +83,32 @@ A\x08AB\x08BC\x08C
 ```
 
 which will display **ABC** in bold text. `\x08` is the code for the backspace key; so you simply write two times the same character to make it **bold**; if you use `A\x08_` you will get underline instead. Backspace (`\x08` characters) should work the same as in the Linux terminal.
+
+From version 2.27.0 (2.27.1) the library added an executable utility that allows converting ANSI formatting and ANSI Art files:
+
+```bash
+npm install -g jquery.terminal
+```
+
+```bash
+LC_ALL=C MAN_KEEP_FORMATTING=1 man -P cat man | from-ansi > man.txt
+```
+
+This will save the output of the man command and save it into a file.
+
+If you have ANSI art file (you can get those from [16colo.rs](https://16colo.rs/)). You can generate jQuery Terminal formatting file with this command:
+
+```bash
+from_ansi -i file.ans -o file.jqt -a
+```
+
+to see help use:
+
+```
+from_ansi --help
+```
+
+Because by default if you don't specify the arguments it will try to read from STDIN.
 
 ### Custom Syntax highlighting
 
