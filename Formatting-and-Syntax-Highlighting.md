@@ -99,13 +99,13 @@ This will save the output of the man command and save it into a file.
 If you have ANSI art file (you can get those from [16colo.rs](https://16colo.rs/)). You can generate jQuery Terminal formatting file with this command:
 
 ```bash
-from_ansi -i file.ans -o file.jqt -a
+from-ansi -i file.ans -o file.jqt -a
 ```
 
 to see help use:
 
 ```
-from_ansi --help
+from-ansi --help
 ```
 
 Because by default if you don't specify the arguments it will try to read from STDIN.
