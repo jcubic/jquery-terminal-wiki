@@ -190,9 +190,29 @@ If you want to have formatters based on interpreters, like for instance, a *mysq
 
 if you want to see an example of a more advanced formatter you can check [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js) that add handy HTML like tags to color the text. It uses a stack data structure to handle nesting (like in HTML).
 
+### Example formatters
+
+jQuery terminal formatting also supports setting specific attributes using JSON format.
+Below is a formatted that allows printing big font text:
+
+```javascript
+$.terminal.defaults.allowedAttributes.push('style');
+
+$.terminal.new_formatter([
+    /<big>(.*?)<\/big>/g, '[[;;;;;{"style": "--size: 1.5;letter-spacing: 2px"}]$1]'
+]);
+```
+
+And this allows using handy XML like format:
+
+```javascript
+term.echo('<big>Hello World</big>');
+```
+
+By default safe attributes are only `['title', /^aria-/, 'id', /^data-/]`, you can use explicit string as value.
+Or using regular expressions.
 
 ## TODO
-* `<big>`
 * `<link>`
 * `<img>`
 * formatted targets
