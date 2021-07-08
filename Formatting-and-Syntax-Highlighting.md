@@ -190,7 +190,7 @@ If you want to have formatters based on interpreters, like for instance, a *mysq
 
 if you want to see an example of a more advanced formatter you can check [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js) that add handy HTML like tags to color the text. It uses a stack data structure to handle nesting (like in HTML).
 
-### Attribute formatted
+### Attribute formatter
 
 jQuery terminal formatting also supports setting specific attributes using JSON format.
 Below is a formatting that allows printing big font text:
