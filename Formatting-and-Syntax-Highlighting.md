@@ -253,6 +253,9 @@ $.terminal.new_formatter([
 term.echo('<a href="https://terminal.jcubic.pl">jQuery Terminal</a>')
 ```
 
+**NOTE:** if you want to have formatted that will allow you to combine formatters (example `big`, `img` and `a`) the best way is to create a single formatter that will parse this XML like format. Look at XML formatter as example [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js), that allow to use XML syntax for colors.
+
+
 ### Formatting targets
 
 In version 2.18.0 jQuery Terminal allows picking where formatters should be applied:
