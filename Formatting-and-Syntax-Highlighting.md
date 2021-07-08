@@ -190,10 +190,10 @@ If you want to have formatters based on interpreters, like for instance, a *mysq
 
 if you want to see an example of a more advanced formatter you can check [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js) that add handy HTML like tags to color the text. It uses a stack data structure to handle nesting (like in HTML).
 
-### Example formatters
+### Attribute formatted
 
 jQuery terminal formatting also supports setting specific attributes using JSON format.
-Below is a formatted that allows printing big font text:
+Below is a formatting that allows printing big font text:
 
 ```javascript
 $.terminal.defaults.allowedAttributes.push('style');
@@ -209,10 +209,75 @@ And this allows using handy XML like format:
 term.echo('<big>Hello World</big>');
 ```
 
+Of course you can use formatting directly:
+
+```javascript
+term.echo('[[;;;;;{"style": "--size: 1.5;letter-spacing: 2px"}]Hello World]');
+```
+
+But using your own formatting is much cleaner and your code looks much better. Especially if you will use this syntax a lot.
+
 By default safe attributes are only `['title', /^aria-/, 'id', /^data-/]`, you can use explicit string as value.
 Or using regular expressions.
 
-## TODO
-* `<link>`
-* `<img>`
-* formatted targets
+### Image XML formatter
+
+Another example can be links and images:
+```javascript
+$.terminal.new_formatter([
+    /<img>(.*?)<\/img>/g, '[[@;;;;$1]]'
+]);
+
+term.echo('<img>https://placekitten.com/200/287</img>');
+```
+
+You can also use formatting that looks similar to HTML:
+
+```javascript
+$.terminal.new_formatter([
+    /<img src="([^"]+)"(?: alt="([^"]+)")?\/?>/g, '[[@;;;;$1]$2]'
+]);
+
+term.echo('<img src="https://placekitten.com/200/287" alt="This is kitten"/>');
+```
+
+### Link XML Formatter
+
+Another handy formatter is formatting for creating links:
+
+```javascript
+$.terminal.new_formatter([
+    /<a href="([^"]+)">([^>]+)<\/a>/g, '[[!;;;;$1]$2]'
+]);
+
+term.echo('<a href="https://terminal.jcubic.pl">jQuery Terminal</a>')
+```
+
+### Formatting targets
+
+In version 2.18.0 jQuery Terminal allows picking where formatters should be applied:
+
+There are 3 formatting targets **echo** **command** and **prompt**. By default, formatters is applied everywhere but you can
+control that.
+
+When using regex formatter you can control that formatter should be used:
+
+```javascript
+$.terminal.new_formatter([
+    /<img src="([^"]+)"(?: alt="([^"]+)")?\/?>/g, '[[@;;;;$1]$2]', { echo: true }
+]);
+```
+
+If an object is not set it will apply formatting everywhere, but if you pass the object you need to specify which targets you want
+to support. The above formatter for images will only work in echo.
+
+With the function the target is passed as an option parameter:
+
+```javascript
+$.terminal.new_formatter(function(string, options) {
+   if (options.echo) {
+      return $.terminal.tracking_replace(string, /foo/, 'bar');
+   }
+   return string;
+});
+```
