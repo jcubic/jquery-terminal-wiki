@@ -178,6 +178,8 @@ The main function for displaying the content of the terminal is the `echo` metho
 * [[Formatting and Syntax Highlighting]].
 * [[Chinese and Japanese character support]].
 * [[Invoking Commands and terminal methods from Server]].
+* New Animation Extension
+* New Forms Extension
 
 **TODO:**
 * Drawing ASCII Table
