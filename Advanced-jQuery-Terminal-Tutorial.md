@@ -186,6 +186,7 @@ The main function for displaying the content of the terminal is the `echo` metho
 * Using ASCII libraries [awesome-ascii](https://github.com/jcubic/awesome-ascii)
 * Using Web Worker for ANSI ART rendering
 * [Drawing ANSI Art](https://codepen.io/jcubic/pen/pxdxmN?editors=0010)
+* Preprocess ANSI with executable
 * renderHandler
   * React inside jQuery Terminal & Canvas, see [Codepen demo](https://codepen.io/jcubic/pen/mddwRzE)
   * PoC of [Animation API using Canvas](https://codepen.io/jcubic/pen/VweodLO?editors=0010) (Canvas is used for performance)
