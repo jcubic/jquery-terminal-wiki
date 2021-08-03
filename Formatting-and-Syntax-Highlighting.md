@@ -291,7 +291,7 @@ In version 2.18.0 jQuery Terminal allows picking where formatters should be appl
 There are 3 formatting targets **echo** **command** and **prompt**. By default, formatters is applied everywhere but you can
 control that.
 
-When using regex formatter you can control that formatter should be used:
+When using regex formatter you can control where formatter should be used:
 
 ```javascript
 $.terminal.new_formatter([
