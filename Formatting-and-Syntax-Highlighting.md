@@ -263,6 +263,26 @@ term.echo('<a href="https://terminal.jcubic.pl">jQuery Terminal</a>')
 
 **NOTE:** if you want to have formatted that will allow you to combine formatters (example `big`, `img` and `a`) the best way is to create a single formatter that will parse this XML like format. Look at XML formatter as example [xml_formatting.js](https://github.com/jcubic/jquery.terminal/blob/master/js/xml_formatting.js), that allow to use XML syntax for colors.
 
+### Extension XML Formatter
+
+In version 2.28.0 xml_formatter was updated to allow to use better XML like syntax. Available tags are:
+
+```xml
+<large size="<num>">text</large>
+<wide spacing="<num>.px">text</wide>
+<img src="<URL>" alt="text"/>
+<bold>text</bold>
+<overline>text</overline>
+<strike>text</strike>
+<underline>text</underline>
+<glow>text</glow>
+<italic>text</italic>
+<link href="<URL>">text</link>
+```
+
+There are also aliases: `b` for bold, `i` for italic, `a` for link, `big` for large.
+
+See [Codepen demo](https://codepen.io/jcubic/pen/poPZGqe?editors=0110) how it can be used.
 
 ### Formatting targets
 
