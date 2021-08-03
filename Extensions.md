@@ -28,7 +28,10 @@ $('body').terminal({
 });
 ```
 
-# TODO
+## Animation
+See [[Animation]]
+
+## TODO
 
 ### Prism
 ### Echo without newline
@@ -36,7 +39,7 @@ $('body').terminal({
 ### Autocomplete menu
 ### Emoji
 
-On Systems that don't support emoji on system level (like Windows 10).
+On systems that don't support emoji on the system level (like Windows 10).
 
 ### Dterm
 ### Unix Formatting
