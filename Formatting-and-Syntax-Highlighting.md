@@ -265,7 +265,7 @@ term.echo('<a href="https://terminal.jcubic.pl">jQuery Terminal</a>')
 
 ### Extension XML Formatter
 
-In version 2.28.0 xml_formatter was updated to allow to use better XML like syntax. Available tags are:
+In version 2.28.0 xml_formatter was updated to allow to use better XML like syntax. Available tags (except CSS colors) are:
 
 ```xml
 <large size="<num>">text</large>
