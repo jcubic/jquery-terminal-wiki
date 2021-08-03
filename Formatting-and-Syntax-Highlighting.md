@@ -57,7 +57,11 @@ $.terminal.syntax('python')
 
 There is one additional *syntax highlighting* added by the *Terminal prism wrapper* which is for the website to highlight HTML, CSS, and javascript. This is mainly for CSS and js that is defined in the *style* parameter for CSS and inside `<script>...</script> for javascript.
 
-Syntax highlighters are also useful if you want to have a command like *cat* or *less* where
+```javascript
+$.terminal.syntax('website');
+```
+
+Syntax highlighters are also useful if you want to have a command like *cat* or *less* where you show the content of the files.
 
 ### ANSI Escape codes
 
