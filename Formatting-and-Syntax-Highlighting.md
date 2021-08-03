@@ -112,7 +112,11 @@ to see help use:
 from-ansi --help
 ```
 
-Because by default if you don't specify the arguments it will try to read from STDIN.
+or
+
+```
+from-ansi
+```
 
 ### Custom Syntax highlighting
 
