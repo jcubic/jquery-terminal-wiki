@@ -135,3 +135,6 @@ See the source code for details: [animation.js](https://github.com/jcubic/jquery
 
 ## Style
 Even that animation is rendered on a canvas, CSS custom properties (CSS variables) --size, --color, --background still apply.
+
+## Limitations
+Animation doesn't wrap if lines are longer than the width of the terminal. You should use the `cols()` function to determine the size of the terminal and handle wrapping yourself if possible or just cut the animation (using substring).
