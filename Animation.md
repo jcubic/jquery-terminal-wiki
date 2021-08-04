@@ -132,3 +132,6 @@ class myRenderer extends $.terminal.Renderer {
 ```
 
 See the source code for details: [animation.js](https://github.com/jcubic/jquery.terminal/blob/master/js/animation.js).
+
+## Style
+Even that animation is rendered on a canvas, CSS custom properties (CSS variables) --size, --color, --background still apply.
