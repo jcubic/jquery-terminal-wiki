@@ -4,13 +4,13 @@ Typing was first added in version 2.24.0 but in current form, with all updates a
 
 ### Prompt animation
 
-```
+```javascript
 term.set_prompt("name: ", { typing: true, delay: 200 });
 ```
 
 ### echo animation
 
-```
+```javascript
 term.echo("Hello", { typing: true, delay: 200 });
 ```
 
@@ -18,7 +18,7 @@ term.echo("Hello", { typing: true, delay: 200 });
 
 Low-level API is single method `terminal::typing`:
 
-```
+```javascript
 term.typing(<type>, <delay>, <string>, options);
 ```
 
