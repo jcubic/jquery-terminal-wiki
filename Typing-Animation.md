@@ -27,6 +27,6 @@ term.typing(<type>, <delay>, <string>, options);
 * type is one of the strings: `'prompt'`, `'echo'` or `'enter'`.
 * **prompt** animation as the name suggests is an animation of the prompt and at the end, the prompt is set to the given string.
 * **echo** animation as the name suggests animate the string that is echo into the terminal.
-* **enter** animation is animation if using entering the command, it uses current prompt as prefix after the animation starts. Enter animation doesn't have a higher-level counterpart.
+* **enter** animation is an animation of entering the command and pressing enter, it uses the current prompt as a prefix after the animation starts. Enter animation doesn't have a higher-level counterpart.
 
 To see examples of typing animation see [Trinity Matrix Nmap sequence animation](https://codepen.io/jcubic/pen/eYWybyM) demo.
