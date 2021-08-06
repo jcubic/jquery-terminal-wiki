@@ -183,7 +183,6 @@ The main function for displaying the content of the terminal is the `echo` metho
 * [[Forms]] new in 2.28.0
 
 **TODO:**
-* Drawing ASCII Table
 * Using ASCII libraries [awesome-ascii](https://github.com/jcubic/awesome-ascii)
 * Using Web Worker for ANSI ART rendering (see example [bookmarklet](https://github.com/jcubic/terminal-bookmarks/blob/master/16colors.js))
 * [Drawing ANSI Art](https://codepen.io/jcubic/pen/pxdxmN?editors=0010)
