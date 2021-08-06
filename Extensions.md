@@ -45,6 +45,22 @@ arr = [['name', 'command'], ['foo', 'hello'], ['bar', 'world'], ['baz', 'lorem i
 term.echo(ascii_table(arr, true)); // use header
 ```
 
+The output looks like this:
+
+```
++-------+-------+-------+-----+------+
+| 1     | 2     | 3     | 4   | 5    |
+| lorem | ipsum | dolor | sit | amet |
++-------+-------+-------+-----+------+
++------+-------------+
+| name | command     |
++------+-------------+
+| foo  | hello       |
+| bar  | world       |
+| baz  | lorem ipsum |
++------+-------------+
+```
+
 See [CodePen demo](https://codepen.io/jcubic/pen/LYygzby?editors=0010)
 
 ## Animation
