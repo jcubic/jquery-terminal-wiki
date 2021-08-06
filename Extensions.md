@@ -28,6 +28,25 @@ $('body').terminal({
 });
 ```
 
+## ASCII Table
+
+To render ASCII table like in MySQL command line. You can use file:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/ascii_table.js"></script>
+```
+
+and use:
+```javascript
+var arr = [[1,2,3,4,5], ["lorem", "ipsum", "dolor", "sit", "amet"]];
+term.echo(ascii_table(arr));
+
+arr = [['name', 'command'], ['foo', 'hello'], ['bar', 'world'], ['baz', 'lorem ipsum']];
+term.echo(ascii_table(arr, true)); // use header
+```
+
+See [CodePen demo](https://codepen.io/jcubic/pen/LYygzby?editors=0010)
+
 ## Animation
 See [[Animation]]
 
